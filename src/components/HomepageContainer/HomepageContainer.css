@@ -3,47 +3,38 @@
   background-color: #081354d9;
 }
 
-.homepage-title {
-  font-family: "Oswald", sans-serif;
-  font-size: 3rem;
-  padding: 1rem;
-  color: white;
+.blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50vmax;
+  z-index: -1;
+  animation: move 10s ease-in-out infinite;
+  transform-origin: 50% 50%;
 }
 
-.homepage-text {
-  padding: 1rem;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.3rem;
+.blob-two {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50vmax;
+  z-index: -1;
+  animation: move 10s ease-in-out infinite;
+  transform-origin: 50% 50%;
 }
 
-.homepage-button {
-  font-weight: 700;
-  color: black;
-}
-
-.box-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.box-color {
-  color: #081354d9;
-}
-
-.box-text {
-  font-family: "Roboto", sans-serif;
-  font-size: 2rem;
-}
-
-.box-text-one {
-  font-family: "Oswald", sans-serif;
-  font-size: 2.5rem;
-}
-
-@media only screena and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .box-two {
     height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .box-text {
+    font-size: 1.5rem;
+  }
+
+  .box-text-one {
+    font-size: 1.2rem;
   }
 }
