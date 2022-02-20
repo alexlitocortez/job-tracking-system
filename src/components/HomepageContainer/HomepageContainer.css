@@ -13,6 +13,11 @@
   transform-origin: 50% 50%;
 }
 
+.first-image {
+  width: 1000px;
+  height: 500px;
+}
+
 .blob-two {
   position: absolute;
   bottom: 0;

@@ -23,7 +23,7 @@ function HomepageContainer() {
         <Box
           sx={{
             marginBottom: '4rem',
-            paddingTop: '5rem'
+            paddingTop: '5rem',
           }}>
           <Typography variant='h1'
           sx={{
@@ -71,7 +71,9 @@ function HomepageContainer() {
               padding='1rem'
               >
                 <Grid item xs={12} md={6}>
-                  <img src='src/images/hand-coding-rafiki.png' className='first-image'/>
+                  <div className='first-image'>
+                  {/* Add image here */}
+                  </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Typography variant='h4'
