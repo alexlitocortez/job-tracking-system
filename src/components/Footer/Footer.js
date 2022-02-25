@@ -1,13 +1,7 @@
 import React from 'react'
 import './Footer.css'
-
-// Material UI Box
 import Box from '@mui/material/Box';
-
-// Material UI Grid
 import Grid from '@mui/material/Grid';
-
-// React icons
 import { AiFillFacebook } from 'react-icons/ai'
 import { AiFillGoogleSquare } from 'react-icons/ai'
 import { AiFillTwitterSquare } from 'react-icons/ai'

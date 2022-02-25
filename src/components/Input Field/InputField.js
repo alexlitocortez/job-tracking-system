@@ -1,67 +1,50 @@
 import React from 'react'
 import './InputField.css'
-
-// Material UI box
 import Box from '@mui/material/Box';
-
-// Material UI Grid
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-
-// Material UI Textfield
 import TextField from '@mui/material/TextField';
-
-// Material UI Button
 import Button from '@mui/material/Button';
 
 function InputField() {
   return (
-    <div className='input-field-container'>
-        <Box
-            component='form'
-            sx={{
-                '& > :not(style)': { m: 1, width: '25ch' }, 
-                width: '50vw',
-                minHeight: '80vh',
-                margin: 'auto',
-                borderRadius: '10px',
-                boxShadow: '1px 1px 1px black',
-                backgroundColor: 'white'
-            }}
-            noValidate
-            autoComplete='off'
-        >
-            <Grid
-            container
-            direction='column'
-            display='flex'
-            alignItems='center'
-            padding='1rem'
-            margin='auto'
-            spacing={6}
-            >
-                <Grid item xs={12}>
-                    <TextField id='outlined-basic' label='Company Name' variant='outlined' />
+    <div>
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#d1dcebd9', minHeight: '100vh' }}>
+            <Box sx={{ padding: '1rem' }}>
+                <Typography variant='h4' sx={{ textAlign: 'right', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, fontFamily: 'Oswald', fontWeight: '700', cursor: 'pointer', ":hover": { color: '#081354d9' } }}>View Calendar</Typography>
+            </Box>
+            <Box sx={{ width: '50vw', minHeight: '80vh', display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: 'auto', borderRadius: '10px', backgroundColor: '#fff', marginTop: '1rem' }}>
+                <Grid
+                container
+                direction='row'
+                display='flex'
+                alignItems='center'
+                padding='1rem'>
+                    <Grid item xs={12}>
+                        <Typography variant='h4' sx={{ fontFamily: 'Roboto', textAlign: 'center' }}>Joback</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id="outlined-basic" label="Company" variant="outlined" sx={{ width: '40vw' }} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id="outlined-basic" label="Website" variant="outlined" sx={{ width: '40vw' }}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id="outlined-basic" label="Job Link" variant="outlined" sx={{ width: '40vw' }}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id="outlined-basic" label="Contact" variant="outlined" sx={{ width: '40vw' }} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id="outlined-basic" label="Date" variant="outlined" sx={{ width: '40vw' }} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant="contained">Submit</Button>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField id='outlined-basic' label='Outlined' variant='outlined' />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField id='outlined-basic' label='Outlined' variant='outlined' />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" 
-                    sx={{
-                    fontWeight: '700',
-                    padding: '1rem'
-                    }}>
-                    Send
-                    </Button>
-                </Grid>
-            </Grid>
-
-            
-
-        </Box>
+            </Box>
+        </Container>
     </div>
   )
 }

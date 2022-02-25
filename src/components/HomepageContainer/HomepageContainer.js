@@ -1,20 +1,9 @@
 import React from 'react'
 import './HomepageContainer.css'
-
-// Material UI header/paragraph components
 import Typography from '@mui/material/Typography';
-
-// Material UI Box
 import Box from '@mui/material/Box';
-
-// Material UI Grid
 import Grid from '@mui/material/Grid';
-
-// Material UI Button
 import Button from '@mui/material/Button';
-
-// Material UI cardmedia for image
-import CardMedia from '@mui/material/CardMedia';
 
 
 function HomepageContainer() {
@@ -90,7 +79,6 @@ function HomepageContainer() {
                     fontFamily: 'Oswald',
                     fontSize: { xs: '1.3rem', sm: '2.5rem'},
                     color: '#081354d9',
-                    
                   }}>
                     Click the button below to try Joback.
                     You won't regret it.
