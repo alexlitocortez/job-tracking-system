@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Footer from '../Footer/Footer';
+import TextField from '@mui/material/TextField';
 
 
 function HomepageContainer() {
@@ -60,9 +62,10 @@ function HomepageContainer() {
               padding='1rem'
               >
                 <Grid item xs={12} md={6}>
-                  <div className='first-image'>
-                  {/* Add image here */}
-                  </div>
+                  <Box>
+                    <TextField id="outlined-basic" label="Username" variant="outlined" sx={{ width: '100%', backgroundColor: 'white' }} margin='dense' />
+                    <TextField id="outlined-basic" label="Password" variant="outlined" sx={{ width: '100%', backgroundColor: 'white' }} />
+                  </Box>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Typography variant='h4'
@@ -100,6 +103,7 @@ function HomepageContainer() {
             <path fill="#ADD8E6" d="M54.1,6.1C54.1,29.8,27.1,59.6,3.1,59.6C-20.9,59.6,-41.8,29.8,-41.8,6.1C-41.8,-17.6,-20.9,-35.2,3.1,-35.2C27.1,-35.2,54.1,-17.6,54.1,6.1Z" transform="translate(100 100)" />
           </svg>
         </div>
+        <Footer />
     </div>
   )
 }

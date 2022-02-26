@@ -6,7 +6,7 @@ import MainCalendar from '../components/MainCalendar/MainCalendar'
 function MainPage() {
   return (
     <div>
-      <MainCalendar />
+      <HomepageContainer />
     </div>
   )
 }
