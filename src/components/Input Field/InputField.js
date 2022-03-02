@@ -1,18 +1,18 @@
 import React from 'react'
 import './InputField.css'
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
 function InputField() {
   return (
     <div>
         <Container maxWidth='xxl' sx={{ backgroundColor: '#d1dcebd9', minHeight: '100vh' }}>
             <Box sx={{ padding: '1rem' }}>
-                <Typography variant='h4' sx={{ textAlign: 'right', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, fontFamily: 'Oswald', fontWeight: '700', cursor: 'pointer', ":hover": { color: '#081354d9' } }}>View Calendar</Typography>
+                {/* <Typography variant='h4' sx={{ textAlign: 'right', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, fontFamily: 'Oswald', fontWeight: '700', cursor: 'pointer', ":hover": { color: '#081354d9' } }}>View Calendar</Typography> */}
             </Box>
             <Box sx={{ width: '50vw', minHeight: '80vh', display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: 'auto', borderRadius: '10px', backgroundColor: '#fff', marginTop: '1rem' }}>
                 <Grid
@@ -21,6 +21,9 @@ function InputField() {
                 display='flex'
                 alignItems='center'
                 padding='1rem'>
+                    <Button sx={{ padding: '1rem', marginLeft: 'auto' }} onClick={showMoney}>
+                        <AiFillCloseCircle  className='react-icon-close' size={30} />
+                      </Button>
                     <Grid item xs={12}>
                         <Typography variant='h4' sx={{ fontFamily: 'Roboto', textAlign: 'center' }}>Joback</Typography>
                     </Grid>

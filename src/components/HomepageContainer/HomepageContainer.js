@@ -1,11 +1,14 @@
 import React from 'react'
 import './HomepageContainer.css'
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Footer from '../Footer/Footer';
-import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
+import Footer from '../Footer/Footer'
+import TextField from '@mui/material/TextField'
+import { BsFillPersonFill } from 'react-icons/bs'
+import { AiFillLock } from 'react-icons/ai'
+import LoginButton from '../LoginButton/LoginButton'
 
 
 function HomepageContainer() {
@@ -59,41 +62,63 @@ function HomepageContainer() {
               direction='row'
               display='flex'
               alignItems='center'
+              justifyContent= 'center'
               padding='1rem'
               >
-                <Grid item xs={12} md={6}>
-                  <Box>
-                    <TextField id="outlined-basic" label="Username" variant="outlined" sx={{ width: '100%', backgroundColor: 'white' }} margin='dense' />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" sx={{ width: '100%', backgroundColor: 'white' }} />
+                <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <Typography variant='h3'
+                    sx={{ padding: '1rem' }}
+                  >
+                    Login
+                  </Typography>
+                  <TextField 
+                    id="standard-basic" 
+                    label="Username" 
+                    variant="standard" 
+                    sx={{ width: '80%', margin: 'auto' }}
+                    InputProps={{
+                      endAdornment: <BsFillPersonFill />
+                    }}
+                    >
+                  </TextField>
+                  <br />
+                  <TextField 
+                    id="standard-basic" 
+                    label="Password" 
+                    variant="standard"
+                    sx={{ width: '80%', margin: 'auto' }} 
+                    InputProps={{
+                      endAdornment: <AiFillLock />
+                    }}
+                    />
+                  <Box sx={{ width: '87%', display: 'flex', flexDirection: 'flex-start', margin: 'auto', cursor: 'pointer' }}>
+                    <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem' }}>Sign Up</Typography>
                   </Box>
+                  <LoginButton />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <Typography variant='h4'
-                  sx={{
-                    color: '#081354d9',
-                    fontWeight: '700',
-                    fontSize: { xs: '1rem', sm: '1.5rem' }
-                  }}>
-                  Shoot your shot
-                  </Typography>
-                  <br />
                   <Typography variant='h1'
                   sx={{
                     fontFamily: 'Oswald',
-                    fontSize: { xs: '1.3rem', sm: '2.5rem'},
+                    fontSize: { xs: '1.3rem', sm: '2rem'},
                     color: '#081354d9',
                   }}>
-                    Click the button below to try Joback.
+                    Click the button below to try Joback without signing up.
                     You won't regret it.
                   </Typography>
-                  <br />
                   <Button variant="contained" 
                   sx={{
                     fontWeight: '700',
-                    padding: '1rem'
+                    padding: '1rem',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginTop: '3rem',
+                    marginBottom: '3rem',
+                    width: '50%'
                   }}>
-                    Let's Start
+                    Test Run
                   </Button>
+                  <br />
                 </Grid>
               </Grid>
             </Box>
