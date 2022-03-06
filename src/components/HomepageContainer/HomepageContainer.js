@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import './HomepageContainer.css'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
@@ -8,10 +9,27 @@ import Footer from '../Footer/Footer'
 import TextField from '@mui/material/TextField'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { AiFillLock } from 'react-icons/ai'
-import LoginButton from '../LoginButton/LoginButton'
-
 
 function HomepageContainer() {
+
+  const [loginUsername, setLoginUsername] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
+
+  const login = () => {
+    axios({
+      method: 'POST',
+      data: {
+        username: loginUsername,
+        password: loginPassword
+      },
+      withCredentials: true,
+      url: 'http://localhost:3000/login',
+    }).then((res) => {
+      console.log(res)
+    })
+      .catch((err) => console.log(err))
+  }
+  
   return (
     <div className='homepage-container'>
         <Box
@@ -71,18 +89,18 @@ function HomepageContainer() {
                   >
                     Login
                   </Typography>
-                  <TextField 
+                  <TextField onChange={e => setLoginUsername(e.target.value)}
                     id="standard-basic" 
                     label="Username" 
                     variant="standard" 
                     sx={{ width: '80%', margin: 'auto' }}
                     InputProps={{
                       endAdornment: <BsFillPersonFill />
-                    }}
+                    }} 
                     >
                   </TextField>
                   <br />
-                  <TextField 
+                  <TextField onChange={e => setLoginPassword(e.target.value)}
                     id="standard-basic" 
                     label="Password" 
                     variant="standard"
@@ -92,9 +110,19 @@ function HomepageContainer() {
                     }}
                     />
                   <Box sx={{ width: '87%', display: 'flex', flexDirection: 'flex-start', margin: 'auto', cursor: 'pointer' }}>
-                    <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem' }}>Sign Up</Typography>
+                    <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' } }}>Sign Up</Typography>
                   </Box>
-                  <LoginButton />
+                  <Button variant="contained" onClick={login}
+                    sx={{
+                    fontWeight: '700',
+                    padding: '1rem',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginTop: '3rem',
+                    width: '50%'
+                    }}>
+                    Login
+                  </Button>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Typography variant='h1'
@@ -106,7 +134,7 @@ function HomepageContainer() {
                     Click the button below to try Joback without signing up.
                     You won't regret it.
                   </Typography>
-                  <Button variant="contained" 
+                  <Button variant="contained"
                   sx={{
                     fontWeight: '700',
                     padding: '1rem',

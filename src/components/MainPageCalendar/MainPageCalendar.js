@@ -13,11 +13,7 @@ import Grid from '@mui/material/Grid';
 
 
 function MainPageCalendar() {
-
-// 1) I need to make an array at the end of useEffect to stop re-rendering
-
-// 2) Second option is to try if else condition
-
+  
   return (
     <div>
         <Container maxWidth='xxl' sx={{ backgroundColor: '#d1dcebd9', minHeight: '100vh' }}>

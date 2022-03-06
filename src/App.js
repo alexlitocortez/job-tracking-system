@@ -3,10 +3,12 @@ import './App.css';
 import SignupPage from './pages/SignupPage';
 import MainPage from './pages/MainPage';
 
+
 function App() {
+
   return (
     <div className="App">
-      <MainPage />
+      <SignupPage />
     </div>
   );
 }
