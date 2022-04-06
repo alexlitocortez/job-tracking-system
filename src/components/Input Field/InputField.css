@@ -2,3 +2,11 @@
   background-color: #d1dcebd9;
   width: 100%;
 }
+
+.react-icon-close-input-field {
+  color: #081354d9;
+}
+
+.react-icon-close-input-field:hover {
+  color: #000;
+}

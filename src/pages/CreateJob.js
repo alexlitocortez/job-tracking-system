@@ -1,5 +1,5 @@
 import React from 'react'
-import './InputField.css'
+import './CreateJob.css'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -9,16 +9,16 @@ import Button from '@mui/material/Button'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { Link } from "react-router-dom"
 
-function InputField() {
+function CreateJob() {
   return (
     <div>
         <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh' }}>
             <Box sx={{ padding: '1rem' }}>
-                <Link to='calendar' style={{ textDecoration: 'none' }}>
+                <Link to='/' style={{ textDecoration: 'none' }}>
                     <Typography variant='h4' sx={{ textAlign: 'right', color: 'white', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, fontFamily: 'Oswald', fontWeight: '700', cursor: 'pointer', ":hover": { color: '#081354d9' } }}>
                         View Calendar
                     </Typography>
-                </Link>     
+                </Link>                
             </Box>
             <Box sx={{ width: '50vw', minHeight: '80vh', display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: 'auto', borderRadius: '10px', backgroundColor: '#d1dcebd9', marginTop: '1rem' }}>
                 <Grid
@@ -31,7 +31,7 @@ function InputField() {
                         <AiFillCloseCircle  className='react-icon-close-input-field' size={30} />
                       </Button>
                     <Grid item xs={12}>
-                        <Typography variant='h4' sx={{ fontFamily: 'Roboto', textAlign: 'center' }}>Create Job</Typography>
+                        <Typography variant='h4' sx={{ fontFamily: 'Roboto', textAlign: 'center' }}>Joback</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField id="outlined-basic" label="Company" variant="outlined" sx={{ width: '40vw' }} />
@@ -58,4 +58,4 @@ function InputField() {
   )
 }
 
-export default InputField
+export default CreateJob

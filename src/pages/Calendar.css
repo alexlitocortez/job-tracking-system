@@ -1,0 +1,9 @@
+.react-icon-close {
+  cursor: pointer;
+  color: red;
+}
+
+.darkBackground {
+  opacity: 0.5;
+  transition: opacity 0.3s ease-out;
+}

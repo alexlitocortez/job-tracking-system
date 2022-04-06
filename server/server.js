@@ -30,17 +30,44 @@ app.use(session({
     saveUninitialized: true
 }))
 app.use(cookieParser('secretcode'))
+app.use(passport.initialize())
+app.use(passport.session())
+require('./passportConfig')(passport)
 
-app.post('/login', (req, res) => {
-    console.log(req.body)
+
+// Routes
+app.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) throw err
+        if (!user) res.send("No User Exists")
+        else {
+            req.logIn(user, (err) => {
+                if (err) throw err
+                res.send("Successfully Authenticated")
+                console.log(req.user)
+            })
+        }
+    })(req, res, next)
 })
 app.post('/register', (req, res) => {
-    User.findOne({username: req.body.username}, (err,doc) => {
+     User.findOne({username: req.body.username}, async (err,doc) => {
         if (err) throw err;
-        
+        if (doc) res.send('User Already Exists')
+        if (!doc) {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
+            const newUser = new User ({
+                username: req.body.username,
+                password: hashedPassword,
+                email: req.body.email
+            })
+            await newUser.save()
+            res.send('User Created')
+        }
     })
     console.log(req.body)
 })
-app.get('/user', (req, res) => {})
+app.get('/user', (req, res) => {
+    res.send(req.user)
+})
 
 app.listen(port, () => (console.log('server has started')))

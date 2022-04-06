@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import Footer from '../components/Footer/Footer'
 import axios from 'axios'
+import { Link } from "react-router-dom"
 
 function SignupPage() {
 
@@ -72,9 +73,12 @@ function SignupPage() {
               sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}>
             </TextField>
             <Divider variant="middle" />
-            <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' }, cursor: 'pointer' }}>
-              Already have an account? Log in
-            </Typography>
+            <br />
+            <Link to='/' style={{ textDecoration: 'none' }}>
+              <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' }, cursor: 'pointer', color: 'black', '&:hover': { color: '#2d65bad9' } }}>
+                Already have an account? Log in
+              </Typography>
+            </Link>
             <Button variant="contained" onClick={signup}
               sx={{
               fontSize: { xs: '0.7rem', sm: '1rem' },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import Axios from 'axios'
 import './HomepageContainer.css'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
@@ -9,14 +9,17 @@ import Footer from '../Footer/Footer'
 import TextField from '@mui/material/TextField'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { AiFillLock } from 'react-icons/ai'
+import { Link } from "react-router-dom"
 
-function HomepageContainer() {
+
+function HomepageContainer(history) {
 
   const [loginUsername, setLoginUsername] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
+  const [data, setData] = useState(null)
 
   const login = () => {
-    axios({
+    Axios({
       method: 'POST',
       data: {
         username: loginUsername,
@@ -28,6 +31,17 @@ function HomepageContainer() {
       console.log(res)
     })
       .catch((err) => console.log(err))
+  }
+
+  const getUser = () => {
+    Axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:3000/user',
+    }).then((res) => {
+      setData(res.data)
+      console.log(res.data)
+    })
   }
   
   return (
@@ -48,14 +62,16 @@ function HomepageContainer() {
             Joback
           </Typography>
           <br />
+          <Box sx={{ padding: '1rem', lineHeight: '2rem' }}>
           <Typography variant='p'
-          sx={{
+            sx={{
             color: '#fff',
             fontFamily: 'Roboto',
-            fontSize: { xs: '0.8rem', sm: '1.5rem' }
-          }}>
+            fontSize: { xs: '1rem', sm: '1.5rem' }
+            }}>
             {"Joback is a job-tracking system designed to track your job applications. Using Google Sheets or Excel isn't going to cut it anymore."}
           </Typography>
+          </Box>
         </Box>
             {/* Blob image */}
         <div className='blob'>
@@ -66,7 +82,7 @@ function HomepageContainer() {
             {/* Box that looks like a card */}
             <Box
             sx={{
-              width: '60vw',
+              width: { xs: '80vw', sm: '60vw' },
               minHeight: '80vh',
               display: 'flex',
               flexDirection: 'row',
@@ -85,7 +101,7 @@ function HomepageContainer() {
               >
                 <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
                   <Typography variant='h3'
-                    sx={{ padding: '1rem' }}
+                    sx={{ padding: '1rem', fontSize: { xs: '1.5rem', sm: '3rem' } }}
                   >
                     Login
                   </Typography>
@@ -109,10 +125,16 @@ function HomepageContainer() {
                       endAdornment: <AiFillLock />
                     }}
                     />
-                  <Box sx={{ width: '87%', display: 'flex', flexDirection: 'flex-start', margin: 'auto', cursor: 'pointer' }}>
-                    <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' } }}>Sign Up</Typography>
+                    <br />
+                  <Box sx={{ width: '87%', display: 'flex', margin: 'auto', cursor: 'pointer', justifyContent: { xs: 'center', sm: 'start' } }}>    
+                    <Link to='signup' style={{ textDecoration: 'none' }}>
+                      <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'black', padding: '1rem', '&:hover': { color: '#2d65bad9' } }}>
+                        Sign Up
+                      </Typography>
+                    </Link>
                   </Box>
-                  <Button variant="contained" onClick={login}
+                  <Button variant="contained" 
+                  onClick={login}
                     sx={{
                     fontWeight: '700',
                     padding: '1rem',
@@ -123,29 +145,38 @@ function HomepageContainer() {
                     }}>
                     Login
                   </Button>
+                  <div>
+                  {/* <h1>Get User</h1>
+                    {/* <button onClick={getUser}>Submit</button>
+                    {data ? <h1>Welcome Back {data.username}</h1> : null} */} 
+                  </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <Typography variant='h1'
+                  <Typography variant='h3'
                   sx={{
                     fontFamily: 'Oswald',
-                    fontSize: { xs: '1.3rem', sm: '2rem'},
+                    fontSize: { xs: '1.2rem', sm: '2.5rem'},
                     color: '#081354d9',
+                    paddingTop: '3rem'
                   }}>
                     Click the button below to try Joback without signing up.
-                    You won't regret it.
                   </Typography>
-                  <Button variant="contained"
-                  sx={{
-                    fontWeight: '700',
-                    padding: '1rem',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    marginTop: '3rem',
-                    marginBottom: '3rem',
-                    width: '50%'
-                  }}>
-                    Test Run
-                  </Button>
+                  <Link to='createjob' style={{ textDecoration: 'none' }}>
+                    <Button variant="contained"
+                    sx={{
+                      fontWeight: '700',
+                      padding: '1rem',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      marginTop: '3rem',
+                      marginBottom: '3rem',
+                      width: '50%'
+                    }}>
+                        <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'white' }}>
+                          Test Run
+                        </Typography>
+                    </Button>
+                  </Link>
                   <br />
                 </Grid>
               </Grid>
