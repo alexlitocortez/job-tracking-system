@@ -7,7 +7,28 @@ import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import Footer from '../components/Footer/Footer'
 import axios from 'axios'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { styled } from '@mui/material/styles'
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'blue',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'blue',
+  },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      borderColor: 'yellow',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'blue',
+    },
+    '&:hover': {
+      border: 'red'
+    }
+  },
+});
 
 function SignupPage() {
 
@@ -54,28 +75,25 @@ function SignupPage() {
         paddingBottom: '3rem',
         borderRadius: '10px',
         backgroundColor: '#d1dcebd9' }}>
-            <TextField onChange={e => setRegisterUsername(e.target.value)}
-              id="standard-basic" 
-              label="Username" 
-              variant="standard" 
-              sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}>
-            </TextField>
-            <TextField onChange={e => setRegisterPassword(e.target.value)}
-              id="standard-basic" 
-              label="Password" 
-              variant="standard" 
-              sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}>
-            </TextField>
-            <TextField onChange={e => setRegisterEmail(e.target.value)}
-              id="standard-basic" 
-              label="Email Address" 
-              variant="standard" 
-              sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}>
-            </TextField>
+            <CssTextField onChange={e => setRegisterUsername(e.target.value)}
+              label="Username"
+              sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}
+              >
+            </CssTextField>
+            <CssTextField onChange={e => setRegisterPassword(e.target.value)}
+              label="Password"
+              sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}
+              >
+            </CssTextField>
+            <CssTextField onChange={e => setRegisterEmail(e.target.value)}
+              label="Email Address"
+              sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto' }}
+              >
+            </CssTextField>
             <Divider variant="middle" />
             <br />
             <Link to='/' style={{ textDecoration: 'none' }}>
-              <Typography variant='h7' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' }, cursor: 'pointer', color: 'black', '&:hover': { color: '#2d65bad9' } }}>
+              <Typography variant='h5' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' }, cursor: 'pointer', color: 'black', '&:hover': { color: '#2d65bad9' } }}>
                 Already have an account? Log in
               </Typography>
             </Link>

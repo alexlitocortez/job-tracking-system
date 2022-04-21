@@ -9,7 +9,29 @@ import Footer from '../Footer/Footer'
 import TextField from '@mui/material/TextField'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { AiFillLock } from 'react-icons/ai'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { styled } from '@mui/material/styles';
+
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'blue',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'blue',
+  },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      borderColor: 'yellow',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'blue',
+    },
+    '&:hover': {
+      border: 'red'
+    }
+  },
+});
 
 
 function HomepageContainer(history) {
@@ -105,26 +127,23 @@ function HomepageContainer(history) {
                   >
                     Login
                   </Typography>
-                  <TextField onChange={e => setLoginUsername(e.target.value)}
-                    id="standard-basic" 
-                    label="Username" 
-                    variant="standard" 
-                    sx={{ width: '80%', margin: 'auto' }}
+                  <CssTextField onChange={e => setLoginUsername(e.target.value)}
+                    label="Username"
+                    sx={{ width: '80%', margin: 'auto', marginBottom: '3rem' }}
                     InputProps={{
                       endAdornment: <BsFillPersonFill />
-                    }} 
-                    >
-                  </TextField>
-                  <br />
-                  <TextField onChange={e => setLoginPassword(e.target.value)}
-                    id="standard-basic" 
-                    label="Password" 
-                    variant="standard"
-                    sx={{ width: '80%', margin: 'auto' }} 
+                    }}
+                  >
+                  </CssTextField>
+                  <CssTextField onChange={e => setLoginPassword(e.target.value)}
+                    label="Password"
+                    sx={{ width: '80%', margin: 'auto' }}
                     InputProps={{
                       endAdornment: <AiFillLock />
                     }}
-                    />
+                  >
+                  </CssTextField>
+                  <br />
                     <br />
                   <Box sx={{ width: '87%', display: 'flex', margin: 'auto', cursor: 'pointer', justifyContent: { xs: 'center', sm: 'start' } }}>    
                     <Link to='signup' style={{ textDecoration: 'none' }}>
@@ -146,9 +165,6 @@ function HomepageContainer(history) {
                     Login
                   </Button>
                   <div>
-                  {/* <h1>Get User</h1>
-                    {/* <button onClick={getUser}>Submit</button>
-                    {data ? <h1>Welcome Back {data.username}</h1> : null} */} 
                   </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
