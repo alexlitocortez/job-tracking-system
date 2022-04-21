@@ -1,0 +1,14 @@
+
+thread th {
+    border-bottom: 3px solid #000;
+  }
+
+
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;
+    max-width: 100%;
+    margin: auto;
+  }

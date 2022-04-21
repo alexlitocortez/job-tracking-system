@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
+import { Link } from "react-router-dom"
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import Button from '@mui/material/Button'
@@ -9,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import './Calendar.css'
+import JobTable from '../components/JobTable/JobTable'
 
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
@@ -61,6 +62,7 @@ const CalendarContainer = styled.div`
 `;
 
 function CalendarPage() {
+
     const [date, setDate] = useState(new Date());
 
     const [showForm, setShowForm] = useState(false);
@@ -75,14 +77,27 @@ function CalendarPage() {
 
     const scrollToRef = (formRef) => window.scrollTo(0, formRef.current.offsetTop)
 
-    // const showDark = () => {
-    //   setHasOpacity(!hasOpacity);
-    // }
-
   return (
-      <div id='darkBackgroundTime' className={hasOpacity ? 'darkBackground' : '' }>
+      <div id='darkBackgroundTime' className={hasOpacity ? 'darkBackground' : '' }>                                                                                                     
           <CalendarContainer>
+            <Link to='/' style={{ textDecoration: 'none', color: '#081354d9', cursor: 'pointer' }}>
+              <Button style={{ backgroundColor: 'transparent' }}>
+                <Typography variant='h1'
+                sx={{ 
+                padding: '1rem',
+                textTransform: 'none',
+                textAlign: 'center', 
+                fontFamily: 'Oswald',
+                fontSize: { xs: '2rem', sm: '4rem' },
+                "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
+                fontWeight: '200', 
+                ":hover": { color: '#081354d9' } }}>
+                  Joback
+                </Typography>
+              </Button>
+            </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
+            <JobTable />
             <Button variant='contained' sx={{ fontWeight: '700', padding: '1rem', marginTop: '3rem', marginBottom: '4rem' }}
             onClick={() => {
               showMoney();
