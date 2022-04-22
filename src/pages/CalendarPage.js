@@ -11,6 +11,27 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import JobTable from '../components/JobTable/JobTable'
+import AddUser from '../components/AddUser/AddUser'
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'blue',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'blue',
+  },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      borderColor: 'yellow',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'blue',
+    },
+    '&:hover': {
+      border: 'red'
+    }
+  },
+});
 
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
@@ -97,61 +118,12 @@ function CalendarPage() {
               </Button>
             </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
+            <AddUser />
             <JobTable />
-            <Button variant='contained' sx={{ fontWeight: '700', padding: '1rem', marginTop: '3rem', marginBottom: '4rem' }}
-            onClick={() => {
-              showMoney();
-              scrollToRef();
-              // showDark();
-            }}>
-            Create Job
-            </Button>
-            {showForm && (
-              <Container ref={formRef} maxWidth='xxl' sx={{ backgroundColor: '#d1dcebd9', minHeight: '100vh' }}>
-                <Box sx={{ width: '50vw', minHeight: '80vh', display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: 'auto', borderRadius: '10px', backgroundColor: '#fff', marginTop: '1rem' }}>
-                    <Grid
-                    container
-                    direction='row'
-                    display='flex'
-                    alignItems='center'
-                    padding='1rem'>
-                        <Button sx={{ padding: '1rem', marginLeft: 'auto' }} 
-                          onClick={() => {
-                            showMoney();
-                            showDark();
-                          }}>
-                          <AiFillCloseCircle  className='react-icon-close' size={30} />
-                        </Button>
-                        <Grid item xs={12}>
-                            <Typography variant='h4' sx={{ fontFamily: 'Roboto', textAlign: 'center' }}>Joback</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField id="outlined-basic" label="Company" variant="outlined" sx={{ width: '40vw' }} />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField id="outlined-basic" label="Website" variant="outlined" sx={{ width: '40vw' }}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField id="outlined-basic" label="Job Link" variant="outlined" sx={{ width: '40vw' }}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField id="outlined-basic" label="Contact" variant="outlined" sx={{ width: '40vw' }} />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField id="outlined-basic" label="Date" variant="outlined" sx={{ width: '40vw' }} />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button variant="contained">Submit</Button>
-                        </Grid>
-                    </Grid>
-                </Box>
-              </Container>
-            )}
-
-            <Box sx={{ width: '70vw', fontFamily: 'Roboto', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
+            <Box sx={{ width: '70vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
               Job Stats
             </Box>
-            <Box sx={{ width: '70vw', fontFamily: 'Roboto', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginTop: '4rem', marginLeft: 'auto', marginRight: 'auto', marginBottom: '4rem', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
+            <Box sx={{ width: '70vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginTop: '4rem', marginLeft: 'auto', marginRight: 'auto', marginBottom: '4rem', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
               Recently Applied Jobs
             </Box>
           </CalendarContainer>
