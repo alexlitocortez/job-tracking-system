@@ -1,3 +1,9 @@
 .react-icon-close-input-field:hover {
   color: #000;
 }
+
+
+.exit-button {
+  display: block;
+  width: 100%;
+}

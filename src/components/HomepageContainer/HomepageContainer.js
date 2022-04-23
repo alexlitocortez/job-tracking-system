@@ -85,14 +85,14 @@ function HomepageContainer(history) {
           </Typography>
           <br />
           <Box sx={{ padding: '1rem', lineHeight: '2rem' }}>
-          <Typography variant='p'
-            sx={{
-            color: '#fff',
-            fontFamily: 'Roboto',
-            fontSize: { xs: '1rem', sm: '1.5rem' }
-            }}>
-            {"Joback is a job-tracking system designed to track your job applications. Using Google Sheets or Excel isn't going to cut it anymore."}
-          </Typography>
+            <Typography variant='p'
+              sx={{
+              color: '#fff',
+              fontFamily: 'Roboto',
+              fontSize: { xs: '1rem', sm: '1.5rem' }
+              }}>
+              {"Joback is a job-tracking system designed to track your job applications. Using Google Sheets or Excel isn't going to cut it anymore."}
+            </Typography>
           </Box>
         </Box>
             {/* Blob image */}
@@ -110,6 +110,7 @@ function HomepageContainer(history) {
               flexDirection: 'row',
               justifyContent: 'center',
               margin: 'auto',
+              marginBottom: '3rem',
               borderRadius: '10px',
               backgroundColor: '#d1dcebd9',
             }}>
@@ -121,7 +122,7 @@ function HomepageContainer(history) {
               justifyContent= 'center'
               padding='1rem'
               >
-                <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}>
                   <Typography variant='h3'
                     sx={{ padding: '1rem', fontSize: { xs: '1.5rem', sm: '3rem' } }}
                   >
@@ -164,19 +165,6 @@ function HomepageContainer(history) {
                     }}>
                     Login
                   </Button>
-                  <div>
-                  </div>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Typography variant='h3'
-                  sx={{
-                    fontFamily: 'Oswald',
-                    fontSize: { xs: '1.2rem', sm: '2.5rem'},
-                    color: '#081354d9',
-                    paddingTop: '3rem'
-                  }}>
-                    Click the button below to try Joback without signing up.
-                  </Typography>
                   <Link to='createjob' style={{ textDecoration: 'none' }}>
                     <Button variant="contained"
                     sx={{
@@ -188,11 +176,16 @@ function HomepageContainer(history) {
                       marginBottom: '3rem',
                       width: '50%'
                     }}>
-                        <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'white' }}>
-                          Test Run
-                        </Typography>
+                      <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'white' }}>
+                        Free Trial
+                      </Typography>
                     </Button>
                   </Link>
+                  <div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  
                   <br />
                 </Grid>
               </Grid>

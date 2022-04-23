@@ -10,8 +10,6 @@ import TableCell from '@mui/material/TableCell'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box';
 
-
-
 function createData(
     Date: number,
     Company: string,
@@ -24,9 +22,9 @@ const JobTable = () => {
 
   return (
     <TableContainer component={Paper}
-    sx={{ width: 1000, margin: 'auto', marginTop: '1rem', borderRadius: '4px' }}
+    sx={{ width: 800, marginTop: '1rem', borderRadius: '4px' }}
     >
-      <Table sx={{ width: 40 }} aria-label="simple table">
+      <Table sx={{ width: 40 }}>
       <TableHead>
           <TableRow>
             <TableCell sx={{ textAlign: 'center', fontSize: '1.5rem' }}>Date</TableCell>

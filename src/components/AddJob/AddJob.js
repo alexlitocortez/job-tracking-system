@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
+import Button from '@mui/material/Button'
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -37,8 +38,9 @@ const AddUser = (props) => {
 
   return (
     <div>
-        <Container maxWidth='sm' sx={{ backgroundColor: '#fff', minHeight: '30vh', padding: '1rem', borderRadius: '4px' }}>
-            <Typography variant='h4' gutterBottom component="div">
+        <Container maxWidth='md' 
+        sx={{ backgroundColor: '#fff', minHeight: '20vh', padding: '1rem', borderRadius: '4px' }}>
+            <Typography variant='h5' gutterBottom component="div">
                 Add Job
             </Typography>
             <Box
@@ -49,19 +51,17 @@ const AddUser = (props) => {
                 margin: 'auto'
             }}
             >
-            {/* <CssTextField label="Date" sx={{ width: '30vw', marginBottom: '1rem' }}></CssTextField>
-            <CssTextField label="Company" sx={{ width: '30vw', marginBottom: '1rem' }}></CssTextField>
-            <CssTextField label="Link" sx={{ width: '30vw', marginBottom: '1rem' }}></CssTextField> */}
                 <TextField id="outlined-basic" label="Date" variant="outlined" size="small" 
-                sx={{ marginBottom: '1rem', width: '30vw' }} 
+                sx={{ marginBottom: '1rem' }} 
                 />
                 <TextField id="outlined-basic" label="Company" variant="outlined" size="small" 
-                sx={{ marginBottom: '1rem', width: '30vw' }}
+                sx={{ marginBottom: '1rem' }}
                  />
                 <TextField id="outlined-basic" label="Link" variant="outlined" size="small" 
-                sx={{ marginBottom: '1rem', width: '30vw' }} 
+                sx={{ marginBottom: '1rem' }} 
                 />
             </Box>
+            <Button variant="contained">Submit</Button>
         </Container>
     </div>
   )

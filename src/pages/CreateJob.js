@@ -9,6 +9,7 @@ import Button from '@mui/material/Button'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { Link } from "react-router-dom"
 import { styled } from '@mui/material/styles';
+import Footer from '../components/Footer/Footer'
 
 
 const CssTextField = styled(TextField)({
@@ -34,7 +35,7 @@ const CssTextField = styled(TextField)({
 function CreateJob() {
   return (
     <div>
-        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh' }}>
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh'}}>
             <Link to='/calendar' style={{ textDecoration: 'none', color: '#081354d9', cursor: 'pointer' }}>
               <Button style={{ backgroundColor: 'transparent' }}>
                 <Typography variant='h4' 
@@ -50,18 +51,34 @@ function CreateJob() {
                 </Typography>
               </Button>
             </Link> 
-            <Box sx={{ width: '50vw', minHeight: '80vh', display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: 'auto', borderRadius: '10px', backgroundColor: '#d1dcebd9', marginTop: '1rem' }}>
+            <Box 
+            sx={{ 
+            width: { xs: '80vw', sm: '40vw' }, 
+            minHeight: '80vh', 
+            paddingBottom: '1rem',
+            display: 'flex', 
+            flexDirection: 'row', 
+            justifyContent: 'center', 
+            margin: 'auto', 
+            borderRadius: '10px', 
+            backgroundColor: '#d1dcebd9', 
+            marginTop: '1rem', 
+            "@media only screen and (max-width: 425px)":
+              { width: '80vw'} 
+            }}>
+              <Box component='span' sx={{ display: 'block' }}>
+                <Link to='/' style={{ textDecoration: 'none' }}>
+                  <Button sx={{ padding: '1rem', marginLeft: 'auto' }}>
+                      <AiFillCloseCircle  className='react-icon-close-input-field' size={30} />
+                  </Button>
+                </Link>
+              </Box>
                 <Grid
                 container
                 direction='row'
-                display='flex'
+                display='block'
                 alignItems='center'
                 padding='1rem'>
-                    <Link to='/' style={{ textDecoration: 'none' }}>
-                        <Button sx={{ padding: '1rem', marginLeft: 'auto' }}>
-                            <AiFillCloseCircle  className='react-icon-close-input-field' size={30} />
-                        </Button>
-                    </Link>
                     <Grid item xs={12}>
                         <Typography variant='h4' 
                         sx={{ 
@@ -72,26 +89,61 @@ function CreateJob() {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <CssTextField label="Company" sx={{ width: '40vw' }}></CssTextField>
+                        <CssTextField label="Company" 
+                        sx={{ 
+                          width: '30vw', 
+                          marginTop: '1rem',
+                          "@media only screen and (max-width: 425px)":
+                          { width: '60vw'} }}>
+                        </CssTextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <CssTextField label="Website" sx={{ width: '40vw' }}></CssTextField>
+                        <CssTextField label="Website" 
+                        sx={{ 
+                          width: '30vw', 
+                          marginTop: '1rem',
+                          "@media only screen and (max-width: 425px)":
+                          { width: '60vw'} }}>
+                        </CssTextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <CssTextField label="Job Link" sx={{ width: '40vw' }}></CssTextField>
+                        <CssTextField label="Job Link" 
+                        sx={{ 
+                          width: '30vw',
+                          marginTop: '1rem',
+                          "@media only screen and (max-width: 425px)":
+                          { width: '60vw'}
+                          }}>
+                        </CssTextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <CssTextField label="Contact" sx={{ width: '40vw' }}></CssTextField>
+                        <CssTextField label="Contact" 
+                        sx={{ 
+                          width: '30vw', 
+                          marginTop: '1rem',
+                          "@media only screen and (max-width: 425px)":
+                          { width: '60vw'}
+                          }}>
+                        </CssTextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <CssTextField label="Date" sx={{ width: '40vw' }}></CssTextField>
+                        <CssTextField label="Date" 
+                        sx={{ 
+                          width: '30vw', 
+                          marginTop: '1rem',
+                          marginBottom: '1rem',
+                          "@media only screen and (max-width: 425px)":
+                          { width: '60vw'}
+                          }}>
+                        </CssTextField>
                     </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained">Submit</Button>
                     </Grid>
                 </Grid>
             </Box>
-        </Container>
+          </Container>
+        <Footer />
     </div>
   )
 }
