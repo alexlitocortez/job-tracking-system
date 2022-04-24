@@ -1,7 +1,7 @@
 import './App.css'
 import SignupPage from './pages/SignupPage'
 import HomePage from './pages/HomePage'
-import CreateJob from './pages/CreateJob'
+import FreeTrial from './pages/FreeTrial'
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/signup' element={<SignupPage />} />
-          <Route path='/createjob' element={<CreateJob />} />
+          <Route path='/freetrial' element={<FreeTrial />} />
           <Route path='/calendar' element={<CalendarPage />} />
         </Routes>
       </Router>

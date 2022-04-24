@@ -1,12 +1,15 @@
 import React from 'react'
-import './CreateJob.css'
+import './FreeTrial.css'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { BsFillCalendarDateFill } from 'react-icons/bs'
+import { FaBuilding } from 'react-icons/fa'
+import { BiLinkAlt } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { styled } from '@mui/material/styles';
 import Footer from '../components/Footer/Footer'
@@ -20,8 +23,8 @@ const CssTextField = styled(TextField)({
       borderBottomColor: 'blue',
     },
     '& .MuiOutlinedInput-root': {
-      '&:hover fieldset': {
-        borderColor: 'yellow',
+      '& fieldset': {
+        borderColor: 'black',
       },
       '&.Mui-focused fieldset': {
         borderColor: 'blue',
@@ -35,16 +38,15 @@ const CssTextField = styled(TextField)({
 function CreateJob() {
   return (
     <div>
-        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh'}}>
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh'}}>
             <Link to='/calendar' style={{ textDecoration: 'none', color: '#081354d9', cursor: 'pointer' }}>
               <Button style={{ backgroundColor: 'transparent' }}>
-                <Typography variant='h4' 
+                <Typography variant='h3' 
                 sx={{ 
                 padding: '1rem',
                 textTransform: 'none',
                 color: 'white', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
                 fontFamily: 'Oswald', 
-                fontWeight: '700', 
                 cursor: 'pointer', 
                 ":hover": { color: '#081354d9' } }}>
                     View Calendar
@@ -54,9 +56,7 @@ function CreateJob() {
             <Box 
             sx={{ 
             width: { xs: '80vw', sm: '40vw' }, 
-            minHeight: '80vh', 
-            paddingBottom: '1rem',
-            display: 'flex', 
+            minHeight: '60vh', 
             flexDirection: 'row', 
             justifyContent: 'center', 
             margin: 'auto', 
@@ -66,10 +66,10 @@ function CreateJob() {
             "@media only screen and (max-width: 425px)":
               { width: '80vw'} 
             }}>
-              <Box component='span' sx={{ display: 'block' }}>
+              <Box component='span' sx={{ display: 'flex' }}>
                 <Link to='/' style={{ textDecoration: 'none' }}>
-                  <Button sx={{ padding: '1rem', marginLeft: 'auto' }}>
-                      <AiFillCloseCircle  className='react-icon-close-input-field' size={30} />
+                  <Button sx={{ padding: '1rem', cursor: 'pointer', backgroundColor: 'transparent' }}>
+                      <AiOutlineArrowLeft  className='react-icon-close-input-field' size={30} />
                   </Button>
                 </Link>
               </Box>
@@ -89,21 +89,31 @@ function CreateJob() {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
+                        <CssTextField label="Date Applied" 
+                        sx={{ 
+                          width: '30vw', 
+                          marginTop: '1rem',
+                          marginBottom: '1rem',
+                          "@media only screen and (max-width: 425px)":
+                          { width: '60vw'} }}
+                          InputProps={{
+                            endAdornment: <BsFillCalendarDateFill />
+                          }}
+                          >
+                        </CssTextField>
+                    </Grid>
+                    <Grid item xs={12}>
                         <CssTextField label="Company" 
                         sx={{ 
                           width: '30vw', 
                           marginTop: '1rem',
+                          marginBottom: '1rem',
                           "@media only screen and (max-width: 425px)":
-                          { width: '60vw'} }}>
-                        </CssTextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <CssTextField label="Website" 
-                        sx={{ 
-                          width: '30vw', 
-                          marginTop: '1rem',
-                          "@media only screen and (max-width: 425px)":
-                          { width: '60vw'} }}>
+                          { width: '60vw'} }}
+                        InputProps={{
+                          endAdornment: <FaBuilding />
+                          }}
+                        >
                         </CssTextField>
                     </Grid>
                     <Grid item xs={12}>
@@ -111,35 +121,16 @@ function CreateJob() {
                         sx={{ 
                           width: '30vw',
                           marginTop: '1rem',
-                          "@media only screen and (max-width: 425px)":
-                          { width: '60vw'}
-                          }}>
-                        </CssTextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <CssTextField label="Contact" 
-                        sx={{ 
-                          width: '30vw', 
-                          marginTop: '1rem',
-                          "@media only screen and (max-width: 425px)":
-                          { width: '60vw'}
-                          }}>
-                        </CssTextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <CssTextField label="Date" 
-                        sx={{ 
-                          width: '30vw', 
-                          marginTop: '1rem',
                           marginBottom: '1rem',
                           "@media only screen and (max-width: 425px)":
-                          { width: '60vw'}
-                          }}>
+                          { width: '60vw'} }}
+                          InputProps={{
+                            endAdornment: <BiLinkAlt size={20} />
+                            }}
+                          >
                         </CssTextField>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained">Submit</Button>
-                    </Grid>
+                    <Button variant="contained" style={{ marginTop: '1rem' }}>Submit</Button>
                 </Grid>
             </Box>
           </Container>

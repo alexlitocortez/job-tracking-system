@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import JobTable from '../components/JobTable/JobTable'
-import AddUser from '../components/AddJob/AddJob'
+import JobForm from '../components/JobForm/JobForm'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -118,15 +118,11 @@ function CalendarPage() {
               </Button>
             </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
-            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '3rem', marginBottom: '3rem' }}>
-              <AddUser />
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '3rem', marginBottom: '3rem' }}>
               <JobTable />
             </Box>
             <Box sx={{ width: '70vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
               Job Stats
-            </Box>
-            <Box sx={{ width: '70vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginTop: '4rem', marginLeft: 'auto', marginRight: 'auto', marginBottom: '4rem', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
-              Recently Applied Jobs
             </Box>
           </CalendarContainer>
       </div>

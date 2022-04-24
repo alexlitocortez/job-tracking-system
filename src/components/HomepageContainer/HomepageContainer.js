@@ -16,13 +16,14 @@ import { styled } from '@mui/material/styles';
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: 'blue',
+
   },
   '& .MuiInput-underline:after': {
     borderBottomColor: 'blue',
   },
   '& .MuiOutlinedInput-root': {
-    '&:hover fieldset': {
-      borderColor: 'yellow',
+    '& fieldset': {
+      borderColor: 'black',
     },
     '&.Mui-focused fieldset': {
       borderColor: 'blue',
@@ -70,13 +71,11 @@ function HomepageContainer(history) {
     <div className='homepage-container'>
         <Box
           sx={{
-            marginBottom: '4rem',
-            paddingTop: '5rem',
+            marginBottom: '2.5rem',
           }}>
-          <Typography variant='h1'
+          <Typography variant='h3'
           sx={{
             fontFamily: 'Oswald',
-            fontSize: { xs: '2rem', sm: '4rem'},
             color: '#fff',
             fontWeight: '500',
             padding: '1rem'
@@ -84,45 +83,42 @@ function HomepageContainer(history) {
             Joback
           </Typography>
           <br />
-          <Box sx={{ padding: '1rem', lineHeight: '2rem' }}>
-            <Typography variant='p'
-              sx={{
+            <Box
+            sx={{
               color: '#fff',
               fontFamily: 'Roboto',
-              fontSize: { xs: '1rem', sm: '1.5rem' }
-              }}>
+              fontSize: { xs: '1rem', sm: '1.2rem' },
+              lineHeight: '1.5rem',
+              padding: '0.5rem'
+            }}
+            >
               {"Joback is a job-tracking system designed to track your job applications. Using Google Sheets or Excel isn't going to cut it anymore."}
-            </Typography>
-          </Box>
+            </Box>
         </Box>
-            {/* Blob image */}
         <div className='blob'>
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="#ADD8E6" d="M54.1,6.1C54.1,29.8,27.1,59.6,3.1,59.6C-20.9,59.6,-41.8,29.8,-41.8,6.1C-41.8,-17.6,-20.9,-35.2,3.1,-35.2C27.1,-35.2,54.1,-17.6,54.1,6.1Z" transform="translate(100 100)" />
           </svg>
         </div>
-            {/* Box that looks like a card */}
             <Box
             sx={{
-              width: { xs: '80vw', sm: '60vw' },
-              minHeight: '80vh',
+              width: { xs: '80vw', sm: '30vw' },
+              minHeight: '65vh',
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'center',
               margin: 'auto',
-              marginBottom: '3rem',
               borderRadius: '10px',
               backgroundColor: '#d1dcebd9',
+              marginBottom: '1rem'
             }}>
               <Grid
               container
               direction='row'
-              display='flex'
-              alignItems='center'
-              justifyContent= 'center'
+              margin='auto'
               padding='1rem'
               >
-                <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}>
+                <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column' }}>
                   <Typography variant='h3'
                     sx={{ padding: '1rem', fontSize: { xs: '1.5rem', sm: '3rem' } }}
                   >
@@ -145,10 +141,9 @@ function HomepageContainer(history) {
                   >
                   </CssTextField>
                   <br />
-                    <br />
                   <Box sx={{ width: '87%', display: 'flex', margin: 'auto', cursor: 'pointer', justifyContent: { xs: 'center', sm: 'start' } }}>    
                     <Link to='signup' style={{ textDecoration: 'none' }}>
-                      <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'black', padding: '1rem', '&:hover': { color: '#2d65bad9' } }}>
+                      <Typography variant='h7' sx={{ fontFamily: 'Roboto', fontWeight: 'bold', color: 'black', padding: '1rem', '&:hover': { color: '#2d65bad9' } }}>
                         Sign Up
                       </Typography>
                     </Link>
@@ -165,32 +160,25 @@ function HomepageContainer(history) {
                     }}>
                     Login
                   </Button>
-                  <Link to='createjob' style={{ textDecoration: 'none' }}>
+                  <Link to='freetrial' style={{ textDecoration: 'none' }}>
                     <Button variant="contained"
                     sx={{
-                      fontWeight: '700',
-                      padding: '1rem',
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      marginTop: '3rem',
-                      marginBottom: '3rem',
-                      width: '50%'
+                    fontWeight: '700',
+                    padding: '1rem',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginTop: '3rem',
+                    marginBottom: '3rem',
+                    width: '50%'
                     }}>
                       <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'white' }}>
                         Free Trial
                       </Typography>
                     </Button>
                   </Link>
-                  <div>
-                  </div>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  
-                  <br />
                 </Grid>
               </Grid>
             </Box>
-            {/* Blob image */}
         <div className='blob-two'>
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="#ADD8E6" d="M54.1,6.1C54.1,29.8,27.1,59.6,3.1,59.6C-20.9,59.6,-41.8,29.8,-41.8,6.1C-41.8,-17.6,-20.9,-35.2,3.1,-35.2C27.1,-35.2,54.1,-17.6,54.1,6.1Z" transform="translate(100 100)" />

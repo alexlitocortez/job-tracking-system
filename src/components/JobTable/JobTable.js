@@ -9,6 +9,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box';
+import JobForm from '../JobForm/JobForm'
 
 function createData(
     Date: number,
@@ -42,19 +43,10 @@ const JobTable = () => {
                 }}>
                     https://www.indeed.com/?from=gnav-viewjob&vjk=2cbd8376f3ee63f7
                 </TableCell>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        padding: '1rem'
-                    }}
-                >
-                    <button className="edit-button">Edit</button>
-                    <button className="delete-button">Delete</button>
-                </Box>
             </TableRow>
         </TableBody>
       </Table>
+      <JobForm />
     </TableContainer>
   )
 }

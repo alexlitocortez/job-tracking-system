@@ -5,6 +5,9 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
+import { BsFillPersonFill } from 'react-icons/bs'
+import { AiFillLock } from 'react-icons/ai'
+import { AiTwotoneMail } from 'react-icons/ai'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import Footer from '../components/Footer/Footer'
@@ -20,8 +23,8 @@ const CssTextField = styled(TextField)({
     borderBottomColor: 'blue',
   },
   '& .MuiOutlinedInput-root': {
-    '&:hover fieldset': {
-      borderColor: 'yellow',
+    '& fieldset': {
+      borderColor: 'black',
     },
     '&.Mui-focused fieldset': {
       borderColor: 'blue',
@@ -56,11 +59,10 @@ function SignupPage() {
 
   return (
     <div>
-      <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh' }}>
-        <Typography variant='h1'
+      <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh' }}>
+        <Typography variant='h3'
         sx={{
         fontFamily: 'Oswald',
-        fontSize: { xs: '2rem', sm: '4rem'},
         color: '#fff',
         fontWeight: '500',
         padding: '1rem',
@@ -76,6 +78,7 @@ function SignupPage() {
         flexDirection: 'column',
         justifyContent: 'center',
         margin: 'auto',
+        paddingTop: '3rem',
         paddingBottom: '3rem',
         borderRadius: '10px',
         backgroundColor: '#d1dcebd9', 
@@ -84,14 +87,23 @@ function SignupPage() {
           <CssTextField onChange={e => setRegisterUsername(e.target.value)}
             label="Username"
             sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
+            InputProps={{
+              endAdornment: <BsFillPersonFill />
+            }}
             />
           <CssTextField onChange={e => setRegisterPassword(e.target.value)}
             label="Password"
             sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
+            InputProps={{
+              endAdornment: <AiFillLock />
+            }}
             />
           <CssTextField onChange={e => setRegisterEmail(e.target.value)}
             label="Email Address"
             sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
+            InputProps={{
+              endAdornment: <AiTwotoneMail />
+            }}
             />
           <Link to='/' style={{ textDecoration: 'none' }}>
             <Typography variant='h5' sx={{ fontFamily: 'Roboto', padding: '1rem', '&:hover': { color: '#2d65bad9' }, cursor: 'pointer', color: 'black', '&:hover': { color: '#2d65bad9' } }}>

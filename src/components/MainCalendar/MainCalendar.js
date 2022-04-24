@@ -76,10 +76,6 @@ function MainCalendar() {
 
     const scrollToRef = (formRef) => window.scrollTo(0, formRef.current.offsetTop)
 
-    // const showDark = () => {
-    //   setHasOpacity(!hasOpacity);
-    // }
-
   return (
       <div id='darkBackgroundTime' className={hasOpacity ? 'darkBackground' : '' }>
           <CalendarContainer>
@@ -88,7 +84,6 @@ function MainCalendar() {
             onClick={() => {
               showMoney();
               scrollToRef();
-              // showDark();
             }}>
             Create Job
             </Button>
