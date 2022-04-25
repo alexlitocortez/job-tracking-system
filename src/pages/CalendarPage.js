@@ -44,7 +44,7 @@ const CalendarContainer = styled.div`
 
   .react-calendar {
       margin: auto;
-      width: 80vw;
+      width: 90vw;
       padding: 3rem;
   }
 
@@ -118,9 +118,7 @@ function CalendarPage() {
               </Button>
             </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
-            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '3rem', marginBottom: '3rem' }}>
-              <JobTable />
-            </Box>
+            <JobTable />
             <Box sx={{ width: '70vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
               Job Stats
             </Box>

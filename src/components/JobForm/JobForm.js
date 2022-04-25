@@ -27,7 +27,10 @@ const CssTextField = styled(TextField)({
 
 function JobForm() {
 
-    const [textValue, setTextValue] = useState.toString((''))
+    const [dateValue, setDateValue] = useState()
+    const [companyValue, setCompanyValue] = useState()
+    const [linkValue, setLinkValue] = useState()
+
     const onTextChange = (e: any) => setTextValue(e.target.value)
     const handleSubmit = () => console.log(textValue)
     const handleReset = () => setTextValue('')
@@ -38,7 +41,6 @@ function JobForm() {
         sx={{
             display: 'flex',
             flexDirection: 'column',
-            maxWidth: '70vw',
             borderRadius: '4px',
             backgroundColor: '#fff',
             paddingBottom: '1rem',
@@ -49,34 +51,37 @@ function JobForm() {
         sx={{
             display: 'flex',
             justifyContent: 'space-around',
+            flexDirection: 'column',
+            padding: '1rem'
         }}
         >
             <CssTextField
                 onChange={onTextChange}
                 variant='filled'
-                value={textValue}
-                label={'Date Applied'}
-                aria-invalid='true'
+                value={dateValue}
+                label='Date Applied'
+                style={{ marginBottom: '1rem' }}
             />
             <CssTextField
                 onChange={onTextChange}
                 variant='filled'
-                value={textValue}
-                label={'Company'}
+                value={companyValue}
+                label='Company'
+                style={{ marginBottom: '1rem' }}
             />
             <CssTextField
                 onChange={onTextChange}
                 variant='filled'
-                value={textValue}
-                label={'Link'}
+                value={linkValue}
+                label='Link'
+                style={{ marginBottom: '1rem' }}
             />
         </Box>
         <Box
         sx={{
             display: 'flex',
             justifyContent: 'center'
-        }}
-        >
+        }}>
             <Button style={{ maxWidth: '10vw', marginTop: '1rem', marginRight: '0.5rem' }} variant='contained' onClick={handleSubmit}>Submit</Button>
             <Button style={{ maxWidth: '10vw', marginTop: '1rem' }} variant='contained' onClick={handleReset}>Reset</Button>
         </Box>
