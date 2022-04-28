@@ -8,35 +8,13 @@ import styled from 'styled-components'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import TextField from '@mui/material/TextField'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import JobTable from '../components/JobTable/JobTable'
-import JobForm from '../components/JobForm/JobForm'
-
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: 'blue',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'blue',
-  },
-  '& .MuiOutlinedInput-root': {
-    '&:hover fieldset': {
-      borderColor: 'yellow',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'blue',
-    },
-    '&:hover': {
-      border: 'red'
-    }
-  },
-});
 
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
   max-width: 100vw;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   background-color: #d1dcebd9;
   padding: 10px;
@@ -99,30 +77,35 @@ function CalendarPage() {
     const scrollToRef = (formRef) => window.scrollTo(0, formRef.current.offsetTop)
 
   return (
-      <div id='darkBackgroundTime' className={hasOpacity ? 'darkBackground' : '' }>                                                                                                     
+      <div id='darkBackgroundTime' className='calendar-container'>                                                                                                     
           <CalendarContainer>
             <Link to='/' style={{ textDecoration: 'none', color: '#081354d9', cursor: 'pointer' }}>
               <Button style={{ backgroundColor: 'transparent' }}>
                 <Typography variant='h1'
                 sx={{ 
                 padding: '1rem',
+                color: '#081354d9',    
                 textTransform: 'none',
                 textAlign: 'center', 
                 fontFamily: 'Oswald',
                 fontSize: { xs: '2rem', sm: '4rem' },
                 "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
                 fontWeight: '200', 
-                ":hover": { color: '#081354d9' } }}>
+                ":hover": { opacity: 0.8 } }}>
                   Joback
                 </Typography>
               </Button>
             </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
+          </CalendarContainer>
+          <Box
+          sx={{ display: 'flex', justifyContent: 'center' }}
+          >
             <JobTable />
-            <Box sx={{ width: '70vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
+          </Box>
+            <Box sx={{ width: '30vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
               Job Stats
             </Box>
-          </CalendarContainer>
       </div>
   )
 }

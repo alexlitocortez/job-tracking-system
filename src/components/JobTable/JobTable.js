@@ -1,73 +1,170 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './table.css'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import data from './jobData.json'
 import Button from '@mui/material/Button'
-import './JobTable.css'
-import Grid from '@mui/material/Grid'
-import TableContainer from '@mui/material/TableContainer'
-import Table from '@mui/material/Table'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
-import JobForm from '../JobForm/JobForm'
-import { IoEllipsisVerticalCircleOutline } from 'react-icons/io5'
+import { styled } from '@mui/material/styles'
+import TextField from '@mui/material/TextField'
+import Input from '@mui/material/Input'
+import { FormControl, Typography } from '@mui/material'
+import { width } from '@mui/system'
+import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
+import EditableRow from '../EditableRow/EditableRow'
 
-function createData(
-    Date: number,
-    Company: string,
-    Link: string,
-  ) {
-    return { Date, Company, Link };
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'blue',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'blue',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'black',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'blue',
+    },
+    '&:hover': {
+      border: 'red'
+    }
+  },
+});
+
+function JobTable() {
+
+    const [jobs, setJobs] = useState(data)
+
+    const [addFormData, setAddFormData] = useState({
+      date: '',
+      company: '',
+      jobLink: ''
+  })
+
+    const [editJobId, setEditJobId] = useState(null)
+
+    const [editFormData, setEditFormData] = useState({
+      date: '',
+      company: '',
+      jobLink: ''
+    })
+
+  const handleAddFormChange = (event) => {
+      event.preventDefault()
+
+      const fieldName = event.target.getAttribute('name')
+      const fieldValue = event.target.value 
+
+      const newFormData = {...addFormData}
+      newFormData[fieldName] = fieldValue
+
+      setAddFormData(newFormData)
   }
 
-const JobTable = () => {
+  const handleEditFormChange = (event) => {
+    
+  }
+
+  const handleAddFormSubmit = (event) => {
+      event.preventDefault()
+
+      const newJob = {
+          date: addFormData.date,
+          company: addFormData.company,
+          jobLink: addFormData.jobLink
+      }
+
+      const newJobs = [...jobs, newJob]
+      setJobs(newJobs)
+  }
+
+  const handleEditClick = (event, job) => {
+    event.preventDefault();
+    setEditJobId(job.id)
+  }
 
   return (
-    <Grid container spacing ={2} style={{ width: '80vw', display: 'flex', margin: 'auto' }}>
-      <Grid item xs={4}>
-        <JobForm />
-      </Grid>
-      <Grid item xs={8}>
-        <TableContainer component={Paper}
-        sx={{ width: '50vw', marginTop: '1rem', borderRadius: '4px' }}
-        >
-          <Table sx={{ width: '50vw' }}>
-              <TableRow>
-                <TableCell sx={{ textAlign: 'center', fontSize: '1.5rem' }}>Date</TableCell>
-                <TableCell sx={{ textAlign: 'center', fontSize: '1.5rem' }}>Comapny</TableCell>
-                <TableCell sx={{ textAlign: 'center', fontSize: '1.5rem' }}>Link</TableCell>
-                <TableCell sx={{ textAlign: 'center', fontSize: '1.5rem' }}>
-                  Actions
-                </TableCell>
-              </TableRow>
-            <TableBody>
-                <TableRow>
-                    <TableCell sx={{ textAlign: 'center', fontSize: '1.1rem' }}>03/14/22</TableCell>
-                    <TableCell sx={{ textAlign: 'center', fontSize: '1.1rem' }}>Stripe</TableCell>
-                    <TableCell 
-                    sx={{ textAlign: 'center', fontSize: '1.1rem' 
-                    }}>
-                        https://www.indeed.com/?from=gnav-viewjob&vjk=2cbd8376f3ee63f7
-                    </TableCell>
-                    <TableCell>
-                      <Box
-                      InputProps={{
-                        endAdornment: <IoEllipsisVerticalCircleOutline />
-                      }}
-                      >
-                        
-                      </Box>
-                    </TableCell>
-                </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Grid>
-    </Grid>
+    <div>
+      <FormControl>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Company</th>
+            <th>Job Link</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {jobs.map((job) => (
+            <>
+              {
+                editJobId === job.id ? (
+                  <EditableRow />
+                ) : (
+                  <ReadOnlyRow 
+                    job={job} 
+                    handleEditClick={handleEditClick}
+                  />
+                )
+              }
+            </>
+          ))}
+        </tbody>
+      </table>
+      </FormControl>
+        <FormControl
+        sx={{
+          marginTop: '1rem',
+          backgroundColor: '#fff',
+          padding: '1rem',
+          borderRadius: '4px'
+        }}>
+          <Typography variant='h3' sx={{fontFamily: 'Oswald', fontWeight: '500',}}>
+            Add Job
+          </Typography>
+            <CssTextField
+              type='text'
+              name='Date'
+              placeholder='Enter date applied'
+              onChange={handleAddFormChange}
+              sx={{
+                marginRight: '0.5rem',
+              }}
+            />
+            <CssTextField
+              type='text'
+              name='Company'
+              placeholder='Enter company name'
+              onChange={handleAddFormChange}
+              sx={{
+                marginRight: '0.5rem'
+              }}
+            />
+            <CssTextField
+              type='text'
+              name='JobLink'
+              placeholder='Enter job link'
+              onChange={handleAddFormChange}
+              sx={{
+                marginRight: '0.5rem'
+              }}
+            />
+            <Button variant='contained' onClick={handleAddFormSubmit}
+            sx={{
+              fontSize: { xs: '0.7rem', sm: '1rem' },
+              fontWeight: '700',
+              padding: '1rem',
+              margin: 'auto',
+              marginTop: '1rem',
+              width: { xs: '10%', sm: '10%' }}}>
+              Add
+            </Button>
+        </FormControl>
+      </div>
   )
 }
 
-
 export default JobTable
-

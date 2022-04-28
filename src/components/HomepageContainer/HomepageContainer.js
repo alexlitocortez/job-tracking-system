@@ -8,10 +8,12 @@ import Button from '@mui/material/Button'
 import Footer from '../Footer/Footer'
 import TextField from '@mui/material/TextField'
 import { BsFillPersonFill } from 'react-icons/bs'
-import { AiFillLock } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { styled } from '@mui/material/styles';
-
+import { styled } from '@mui/material/styles'
+import InputAdornment from '@mui/material/InputAdornment'
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import IconButton from '@mui/material/IconButton';
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -33,7 +35,6 @@ const CssTextField = styled(TextField)({
     }
   },
 });
-
 
 function HomepageContainer(history) {
 
@@ -66,6 +67,29 @@ function HomepageContainer(history) {
       console.log(res.data)
     })
   }
+
+  const [values, setValues] = React.useState({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   
   return (
     <div className='homepage-container'>
@@ -128,15 +152,27 @@ function HomepageContainer(history) {
                     label="Username"
                     sx={{ width: '80%', margin: 'auto', marginBottom: '3rem' }}
                     InputProps={{
-                      endAdornment: <BsFillPersonFill />
+                      endAdornment: <BsFillPersonFill size={25} />
                     }}
                   >
                   </CssTextField>
                   <CssTextField onChange={e => setLoginPassword(e.target.value)}
+                    id="outlined-adornment-password"
                     label="Password"
+                    type={values.showPassword ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange('password')}
                     sx={{ width: '80%', margin: 'auto' }}
                     InputProps={{
-                      endAdornment: <AiFillLock />
+                      endAdornment:
+                      <VisibilityIcon
+                      aria-label='toggle password visibility'
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      sx={{ cursor: 'pointer' }}
+                      >
+                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </VisibilityIcon>
                     }}
                   >
                   </CssTextField>

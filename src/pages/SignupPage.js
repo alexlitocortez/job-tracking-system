@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import { BsFillPersonFill } from 'react-icons/bs'
-import { AiFillLock } from 'react-icons/ai'
 import { AiTwotoneMail } from 'react-icons/ai'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
@@ -14,6 +13,8 @@ import Footer from '../components/Footer/Footer'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -57,6 +58,29 @@ function SignupPage() {
       .catch((err) => console.log(err))
   }
 
+  const [values, setValues] = React.useState({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div>
       <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh' }}>
@@ -88,21 +112,34 @@ function SignupPage() {
             label="Username"
             sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
             InputProps={{
-              endAdornment: <BsFillPersonFill />
+              endAdornment: <BsFillPersonFill size={25} />
             }}
             />
-          <CssTextField onChange={e => setRegisterPassword(e.target.value)}
+          <CssTextField onChange={e => setLoginPassword(e.target.value)}
+            id="outlined-adornment-password"
             label="Password"
-            sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleChange('password')}
+            sx={{ width: {xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
             InputProps={{
-              endAdornment: <AiFillLock />
+              endAdornment:
+              <VisibilityIcon
+              aria-label='toggle password visibility'
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+              sx={{ cursor: 'pointer' }}
+              >
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </VisibilityIcon>
             }}
-            />
+          >
+          </CssTextField>
           <CssTextField onChange={e => setRegisterEmail(e.target.value)}
             label="Email Address"
             sx={{ width: { xs: '60vw', sm: '60%' }, margin: 'auto', marginTop: '1rem', marginBottom: '1rem' }}
             InputProps={{
-              endAdornment: <AiTwotoneMail />
+              endAdornment: <AiTwotoneMail size={27} />
             }}
             />
           <Link to='/' style={{ textDecoration: 'none' }}>
