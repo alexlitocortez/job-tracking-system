@@ -64,7 +64,15 @@ function JobTable() {
   }
 
   const handleEditFormChange = (event) => {
-    
+    event.preventDefault()
+
+    const fieldName = event.target.getAttribute('name')
+    const fieldValue = event.target.value
+
+    const newFormData = { ...editFormData }
+    newFormData[fieldName] = fieldValue
+
+    setEditFormData(newFormData)
   }
 
   const handleAddFormSubmit = (event) => {
@@ -80,9 +88,51 @@ function JobTable() {
       setJobs(newJobs)
   }
 
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault()
+
+    const editedJob = {
+      id: editJobId,
+      date: editFormData.date,
+      company: editFormData.company,
+      jobLink: editFormData.jobLink
+    }
+
+    const newJobs = [...jobs]
+
+    const index = jobs.findIndex((job) => job.id === editJobId)
+
+    newJobs[index] = editedJob
+
+    setJobs(newJobs)
+    setEditJobId(null)
+  }
+  
   const handleEditClick = (event, job) => {
-    event.preventDefault();
+    event.preventDefault()
     setEditJobId(job.id)
+
+    const formValues = {
+      date: job.date,
+      company: job.company,
+      jobLink: job.jobLink
+    }
+
+    setEditFormData(formValues)
+  }
+
+  const handleCancelClick = () => {
+    setEditJobId(null)
+  }
+
+  const handleDeleteClick = (jobId) => {
+    const newJobs = [...jobs]
+
+    const index = jobs.findIndex((job) => job.id === jobId)
+
+    newJobs.splice(index, 1)
+
+    setJobs(newJobs)
   }
 
   return (
@@ -102,11 +152,17 @@ function JobTable() {
             <>
               {
                 editJobId === job.id ? (
-                  <EditableRow />
+                  <EditableRow 
+                    editFormData={editFormData} 
+                    handleEditFormChange={handleEditFormChange} 
+                    handleEditFormSubmit={handleEditFormSubmit}
+                    handleCancelClick={handleCancelClick}
+                  />
                 ) : (
                   <ReadOnlyRow 
                     job={job} 
                     handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
                   />
                 )
               }
@@ -162,7 +218,7 @@ function JobTable() {
               width: { xs: '10%', sm: '10%' }}}>
               Add
             </Button>
-        </FormControl>
+      </FormControl>
       </div>
   )
 }
