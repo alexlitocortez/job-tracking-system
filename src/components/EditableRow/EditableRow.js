@@ -37,8 +37,6 @@ const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit,
               placeholder='Enter date applied'
               value={editFormData.date}
               onChange={handleEditFormChange} 
-              error={error}
-              helperText={error ? 'Please type something' : 'Yes!'}
               sx={{
                 marginRight: '0.5rem',
               }}
@@ -71,19 +69,24 @@ const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit,
         <td>
             <Button variant='contained' type='submit' onClick={(event) => handleEditFormSubmit( event, job )} type='submit'
             sx={{
-              fontSize: { xs: '0.7rem', sm: '1rem' },
+              fontSize: { xs: '0.6rem', sm: '0.9rem' },
               fontWeight: '700',
-              padding: '0.5rem',
+              padding: '0.8rem',
               margin: 'auto',
+              marginRight: '0.5rem',
+              backgroundColor: '#023020',
+              '&:hover': { backgroundColor: '#023020', opacity: 0.8 },
               width: { xs: '10%', sm: '10%' }}}>
                   Save
             </Button>
             <Button variant='contained' type='submit' onClick={handleCancelClick} type='submit'
             sx={{
-              fontSize: { xs: '0.7rem', sm: '1rem' },
+              fontSize: { xs: '0.6rem', sm: '0.9rem' },
               fontWeight: '700',
-              padding: '0.5rem',
+              padding: '0.8rem',
               margin: 'auto',
+              backgroundColor: '#880808',
+              '&:hover': { backgroundColor: '#880808', opacity: 0.8 },
               width: { xs: '10%', sm: '10%' }}}>
                   Cancel
             </Button>
