@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
+import { FormControl } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
@@ -26,10 +27,24 @@ const CssTextField = styled(TextField)({
 
 const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit, job, handleCancelClick }) => {
 
-    const error = event.target.getAttribute('name') == ''
+  const [error, setError] = useState()
+
+  const handleErrorChange = () => {
+    event.preventDefault()
+    const myString = event.target.getAttribute('value')
+
+    if (myString == 0) {
+      alert('Please write text')
+    } else {
+      alert('Yes')
+    }
+  }
+
+
 
   return (
     <tr>
+      <FormControl>
         <td>
             <CssTextField 
               type='text'
@@ -67,7 +82,11 @@ const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit,
             />
         </td>
         <td>
-            <Button variant='contained' type='submit' onClick={(event) => handleEditFormSubmit( event, job )} type='submit'
+            <Button variant='contained' type='submit' onClick={(event) => {
+              handleEditFormSubmit(event, job);
+              handleErrorChange(event.target.value);
+            }}            
+            type='submit'
             sx={{
               fontSize: { xs: '0.6rem', sm: '0.9rem' },
               fontWeight: '700',
@@ -79,7 +98,8 @@ const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit,
               width: { xs: '10%', sm: '10%' }}}>
                   Save
             </Button>
-            <Button variant='contained' type='submit' onClick={handleCancelClick} type='submit'
+            <Button variant='contained' type='submit' onClick={handleCancelClick} 
+            type='submit'
             sx={{
               fontSize: { xs: '0.6rem', sm: '0.9rem' },
               fontWeight: '700',
@@ -91,6 +111,7 @@ const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit,
                   Cancel
             </Button>
         </td>
+      </FormControl>
     </tr>
   )
 }

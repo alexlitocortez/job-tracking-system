@@ -5,6 +5,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import data from './jobData.json'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Input from '@mui/material/Input'
@@ -12,6 +13,7 @@ import { FormControl, Typography } from '@mui/material'
 import { width } from '@mui/system'
 import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
 import EditableRow from '../EditableRow/EditableRow'
+import AddTable from '../AddTable/AddTable'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -135,10 +137,14 @@ function JobTable() {
     setJobs(newJobs)
   }
 
-
-
   return (
     <div>
+      <Container maxWidth='xxl'
+      sx={{
+        backgroundColor: '#d1dcebd9'
+      }}
+      >
+      <Box>
       <FormControl>
       <table>
         <thead>
@@ -173,54 +179,15 @@ function JobTable() {
         </tbody>
       </table>
       </FormControl>
-        <FormControl
-        sx={{
-          marginTop: '1rem',
-          backgroundColor: '#fff',
-          padding: '1rem',
-          borderRadius: '4px'
-        }}>
-          <Typography variant='h3' sx={{fontFamily: 'Oswald', fontWeight: '500',}}>
-            Add Job
-          </Typography>
-            <CssTextField
-              type='text'
-              name='Date'
-              placeholder='Enter date applied'
-              onChange={handleAddFormChange}
-              sx={{
-                marginRight: '0.5rem',
-              }}
-            />
-            <CssTextField
-              type='text'
-              name='Company'
-              placeholder='Enter company name'
-              onChange={handleAddFormChange}
-              sx={{
-                marginRight: '0.5rem'
-              }}
-            />
-            <CssTextField
-              type='text'
-              name='JobLink'
-              placeholder='Enter job link'
-              onChange={handleAddFormChange}
-              sx={{
-                marginRight: '0.5rem'
-              }}
-            />
-            <Button variant='contained' onClick={handleAddFormSubmit}
-            sx={{
-              fontSize: { xs: '0.7rem', sm: '1rem' },
-              fontWeight: '700',
-              padding: '1rem',
-              margin: 'auto',
-              marginTop: '1rem',
-              width: { xs: '10%', sm: '10%' }}}>
-              Add
-            </Button>
-      </FormControl>
+      </Box>
+      <Box>
+        <AddTable 
+          addFormData={addFormData}
+          handleAddFormChange={handleAddFormChange}
+          handleAddFormSubmit={handleAddFormSubmit}
+        />
+      </Box>
+      </Container>
       </div>
   )
 }

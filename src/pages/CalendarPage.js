@@ -14,10 +14,10 @@ import JobTable from '../components/JobTable/JobTable'
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
   max-width: 100vw;
-  height: 100vh;
+  height: 90vh;
   margin: auto;
   background-color: #d1dcebd9;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 3px;
 
   .react-calendar {
@@ -98,14 +98,7 @@ function CalendarPage() {
             </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
           </CalendarContainer>
-          <Box
-          sx={{ display: 'flex', justifyContent: 'center' }}
-          >
             <JobTable />
-          </Box>
-            <Box sx={{ width: '30vw', fontFamily: 'Oswald', fontSize: '1.5rem', backgroundColor: 'white', padding: '4rem', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px', boxShadow: '1px 1px 0.5px black' }}>
-              Job Stats
-            </Box>
       </div>
   )
 }
