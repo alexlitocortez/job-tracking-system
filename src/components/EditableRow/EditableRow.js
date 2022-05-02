@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
-import { FormControl } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -27,24 +25,8 @@ const CssTextField = styled(TextField)({
 
 const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit, job, handleCancelClick }) => {
 
-  const [error, setError] = useState()
-
-  const handleErrorChange = () => {
-    event.preventDefault()
-    const myString = event.target.getAttribute('value')
-
-    if (myString == 0) {
-      alert('Please write text')
-    } else {
-      alert('Yes')
-    }
-  }
-
-
-
   return (
     <tr>
-      <FormControl>
         <td>
             <CssTextField 
               type='text'
@@ -111,7 +93,6 @@ const EditableRow = ({ editFormData, handleEditFormChange, handleEditFormSubmit,
                   Cancel
             </Button>
         </td>
-      </FormControl>
     </tr>
   )
 }

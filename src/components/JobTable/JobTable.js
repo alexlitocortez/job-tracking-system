@@ -14,6 +14,7 @@ import { width } from '@mui/system'
 import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
 import EditableRow from '../EditableRow/EditableRow'
 import AddTable from '../AddTable/AddTable'
+import EditableForm from '../EditableForm/EditableForm'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -93,6 +94,8 @@ function JobTable() {
   const handleEditFormSubmit = (event) => {
     event.preventDefault()
 
+    const fieldValue = event.target.value
+
     const editedJob = {
       id: editJobId,
       date: editFormData.date,
@@ -108,6 +111,8 @@ function JobTable() {
 
     setJobs(newJobs)
     setEditJobId(null)
+
+    
   }
   
   const handleEditClick = (event, job) => {
@@ -185,6 +190,14 @@ function JobTable() {
           addFormData={addFormData}
           handleAddFormChange={handleAddFormChange}
           handleAddFormSubmit={handleAddFormSubmit}
+        />
+      </Box>
+      <Box>
+        <EditableForm 
+          editFormData={editFormData} 
+          handleEditFormChange={handleEditFormChange} 
+          handleEditFormSubmit={handleEditFormSubmit}
+          handleCancelClick={handleCancelClick}
         />
       </Box>
       </Container>
