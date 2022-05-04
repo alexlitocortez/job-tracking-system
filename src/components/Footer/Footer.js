@@ -9,7 +9,11 @@ import { AiFillLinkedin } from 'react-icons/ai'
 
 function Footer() {
   return (
-        <Grid maxWidth='xxl'
+      <Box
+      className='footer'
+      >
+        <Grid 
+            maxWidth='xxl'
             container
             direction='row'
             justifyContent='space-evenly'
@@ -20,7 +24,7 @@ function Footer() {
             backgroundColor: '#081354d9',
             color: 'white',
             paddingTop: '1rem',
-            paddingBottom: '1rem'
+            paddingBottom: '1rem',
         }}>
             <Grid item xs={12} md={6}>
                 <Box className='footer-text'>
@@ -36,6 +40,7 @@ function Footer() {
                 </Box>
             </Grid>
         </Grid>
+    </Box>
   )
 }
 

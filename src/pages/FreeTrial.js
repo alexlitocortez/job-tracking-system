@@ -39,12 +39,16 @@ const CssTextField = styled(TextField)({
 function CreateJob() {
   return (
     <div>
-        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh'}}>
-            <Link to='/calendar' style={{ textDecoration: 'none', color: '#081354d9', cursor: 'pointer' }}>
-              <Button style={{ backgroundColor: 'transparent' }}>
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh', paddingBottom: '3rem' }}>
+              <Button 
+              component={Link}
+              to='/calendar'
+              style={{ 
+                backgroundColor: 'transparent',
+                }}>
                 <Typography variant='h3' 
                 sx={{ 
-                padding: '1rem',
+                padding: '2rem',
                 textTransform: 'none',
                 color: 'white', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
                 fontFamily: 'Oswald', 
@@ -53,7 +57,6 @@ function CreateJob() {
                     View Calendar
                 </Typography>
               </Button>
-            </Link> 
             <Box 
             sx={{ 
             width: { xs: '80vw', sm: '40vw' }, 
@@ -135,7 +138,6 @@ function CreateJob() {
                 </Grid>
             </Box>
           </Container>
-        <Footer />
     </div>
   )
 }

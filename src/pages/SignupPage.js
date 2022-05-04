@@ -83,7 +83,7 @@ function SignupPage() {
 
   return (
     <div>
-      <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh' }}>
+      <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh', paddingBottom: '3rem' }}>
         <Typography variant='h3'
         sx={{
         fontFamily: 'Oswald',
@@ -160,7 +160,6 @@ function SignupPage() {
           </Button>
         </Box>
       </Container>
-      <Footer />
     </div>
   )
 }

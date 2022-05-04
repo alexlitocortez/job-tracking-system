@@ -24,16 +24,31 @@ const CssTextField = styled(TextField)({
   })
 
 const EditableForm = ({ editFormData, handleEditFormChange, handleEditFormSubmit, job, handleCancelClick }) => {
+    
+    const [errorText, setErrorText] = useState()
 
-    const [error, setErrorMessage] = useState()
+    const inputErrors = {
+        date: 'Date Required',
+        name: 'Name Required',
+        jobLink: 'Job Link Required'
+    }
 
-    const handleValidationTwo = (event) => {
+    const handleInputError = (event) => {
+        const fieldValue = event.target.value
 
-        if(editFormData.date == '') {
-            setErrorMessage('message')
+        if (!fieldValue) {
+            setErrorText(inputErrors.date)
         } else {
-            setErrorMessage('yerp')
+            return false
         }
+
+        console.log(fieldValue)
+    }
+
+    const checkValue = (event) => {
+      const fieldValue = event.target.value
+
+      console.log(fieldValue)
     }
 
   return (
@@ -43,14 +58,17 @@ const EditableForm = ({ editFormData, handleEditFormChange, handleEditFormSubmit
         name='date'
         placeholder='Enter date applied'
         value={editFormData.date}
-        onChange={handleEditFormChange}
-        helperText={error ? 'date required' : null} 
+        onChange={handleInputError}
+        error={Boolean(errorText)}
+        helperText={errorText}
         sx={{
             marginRight: '0.5rem',
+            paddingBottom: '5rem'
         }}
         />
             <Button variant='contained' type='submit' onClick={(event) => {
                 handleEditFormSubmit(event, job);
+                handleInputError(event)
             }}            
             type='submit'
             sx={{

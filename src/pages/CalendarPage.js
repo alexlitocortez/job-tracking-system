@@ -79,8 +79,7 @@ function CalendarPage() {
   return (
       <div id='darkBackgroundTime' className='calendar-container'>                                                                                                     
           <CalendarContainer>
-            <Link to='/' style={{ textDecoration: 'none', color: '#081354d9', cursor: 'pointer' }}>
-              <Button style={{ backgroundColor: 'transparent' }}>
+              <Button component={Link} to='/' style={{ backgroundColor: 'transparent' }}>
                 <Typography variant='h1'
                 sx={{ 
                 padding: '1rem',
@@ -95,7 +94,6 @@ function CalendarPage() {
                   Joback
                 </Typography>
               </Button>
-            </Link>       
             <Calendar onChange={setDate} value={date} className='react-calendar' />
           </CalendarContainer>
             <JobTable />

@@ -96,6 +96,12 @@ function JobTable() {
 
     const fieldValue = event.target.value
 
+    const inputError = {
+      date: 'Date Required',
+      name: 'Name Required',
+      jobLink: 'Job Link Required'
+    }
+
     const editedJob = {
       id: editJobId,
       date: editFormData.date,
@@ -111,8 +117,6 @@ function JobTable() {
 
     setJobs(newJobs)
     setEditJobId(null)
-
-    
   }
   
   const handleEditClick = (event, job) => {

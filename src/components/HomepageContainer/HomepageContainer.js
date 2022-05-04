@@ -96,6 +96,7 @@ function HomepageContainer(history) {
         <Box
           sx={{
             marginBottom: '2.5rem',
+            height: '100%',
           }}>
           <Typography variant='h3'
           sx={{
@@ -134,7 +135,6 @@ function HomepageContainer(history) {
               margin: 'auto',
               borderRadius: '10px',
               backgroundColor: '#d1dcebd9',
-              marginBottom: '1rem'
             }}>
               <Grid
               container
@@ -196,31 +196,31 @@ function HomepageContainer(history) {
                     }}>
                     Login
                   </Button>
-                  <Link to='freetrial' style={{ textDecoration: 'none' }}>
-                    <Button variant="contained"
-                    sx={{
-                    fontWeight: '700',
-                    padding: '1rem',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    marginTop: '3rem',
-                    marginBottom: '3rem',
-                    width: '50%'
-                    }}>
-                      <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'white' }}>
-                        Free Trial
-                      </Typography>
-                    </Button>
-                  </Link>
+                  <Button variant="contained"
+                  component={Link}
+                  to='freetrial'
+                  sx={{
+                  fontWeight: '700',
+                  padding: '1rem',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  marginTop: '3rem',
+                  marginBottom: '3rem',
+                  width: '50%'
+                  }}>
+                    <Typography variant='h7' sx={{ fontFamily: 'Roboto', color: 'white' }}>
+                      Free Trial
+                    </Typography>
+                  </Button>
                 </Grid>
               </Grid>
             </Box>
+            <Footer />
         <div className='blob-two'>
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="#ADD8E6" d="M54.1,6.1C54.1,29.8,27.1,59.6,3.1,59.6C-20.9,59.6,-41.8,29.8,-41.8,6.1C-41.8,-17.6,-20.9,-35.2,3.1,-35.2C27.1,-35.2,54.1,-17.6,54.1,6.1Z" transform="translate(100 100)" />
           </svg>
         </div>
-        <Footer />
     </div>
   )
 }

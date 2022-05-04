@@ -1,7 +1,9 @@
+
 .homepage-container {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #081354d9;
+  overflow: auto;
 }
 
 .blob {
@@ -21,7 +23,7 @@
 
 .blob-two {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
   width: 50vmax;
   z-index: -1;
@@ -29,11 +31,6 @@
   transform-origin: 50% 50%;
 }
 
-@media only screen and (max-width: 768px) {
-  .box-two {
-    height: 100vh;
-  }
-}
 
 @media only screen and (max-width: 425px) {
   .box-text {
