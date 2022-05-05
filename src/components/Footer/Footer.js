@@ -24,7 +24,7 @@ function Footer() {
             backgroundColor: '#081354d9',
             color: 'white',
             paddingTop: '1rem',
-            paddingBottom: '1rem',
+            paddingBottom: '1.5rem',
         }}>
             <Grid item xs={12} md={6}>
                 <Box className='footer-text'>

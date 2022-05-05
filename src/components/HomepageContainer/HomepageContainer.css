@@ -31,7 +31,6 @@
   transform-origin: 50% 50%;
 }
 
-
 @media only screen and (max-width: 425px) {
   .box-text {
     font-size: 1.5rem;

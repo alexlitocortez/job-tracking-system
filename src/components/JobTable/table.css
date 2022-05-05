@@ -1,17 +1,17 @@
-table {
+  table {
     font-family: Roboto, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 60vw;
     border-radius: 8px;
-  }
+    }
   
   table td, table th {
     border: 1px solid #ddd;
     padding: 1rem;
   }
-  
+
   table tr:hover {background-color: #ddd;}
-  
+
   table th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -19,4 +19,8 @@ table {
     background-color: #081354d9;
     color: white;
     border-radius: 4px;
+  }
+
+  thead {
+    font-size: larger;
   }

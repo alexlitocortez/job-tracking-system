@@ -39,7 +39,7 @@ const CssTextField = styled(TextField)({
 function CreateJob() {
   return (
     <div>
-        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '100vh', paddingBottom: '3rem' }}>
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '90vh', paddingBottom: '7rem' }}>
               <Button 
               component={Link}
               to='/calendar'
@@ -138,6 +138,7 @@ function CreateJob() {
                 </Grid>
             </Box>
           </Container>
+          <Footer />
     </div>
   )
 }

@@ -127,12 +127,13 @@ function HomepageContainer(history) {
         </div>
             <Box
             sx={{
-              width: { xs: '80vw', sm: '30vw' },
+              width: { xs: '80vw', sm: '50vw', lg: '30vw' },
               minHeight: '65vh',
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'center',
               margin: 'auto',
+              marginBottom: '3.5rem',
               borderRadius: '10px',
               backgroundColor: '#d1dcebd9',
             }}>
