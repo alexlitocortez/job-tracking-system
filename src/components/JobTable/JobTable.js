@@ -15,6 +15,11 @@ import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
 import EditableRow from '../EditableRow/EditableRow'
 import AddTable from '../AddTable/AddTable'
 import EditableForm from '../EditableForm/EditableForm'
+import JobStats from '../JobStats/JobStats'
+import isMatch from 'date-fns/isMatch'
+import * as moment from 'moment';
+
+
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -58,6 +63,7 @@ function JobTable() {
     const [errorText, setErrorText] = useState()
     const [companyErrorText, setCompanyErrorText] = useState()
     const [jobLinkErrorText, setJobLinkErrorText] = useState()
+    const [dateError, setDateError] = useState()
 
   const handleAddFormChange = (event) => {
       event.preventDefault()
@@ -118,8 +124,12 @@ function JobTable() {
     // setJobs(newJobs)
     // setEditJobId(null)
 
-    if (editJobId == '') {
-      setJobs(!newJobs)
+    if (editFormData.date == '') {
+      return null
+    } else if (editFormData.company == '') {
+      return null
+    } else if (editFormData.jobLink == '') {
+      return null
     } else {
       setJobs(newJobs)
       setEditJobId(null)
@@ -155,39 +165,42 @@ function JobTable() {
 
     const inputErrors = {
       date: 'Date Required',
+      dateTwo: 'Please enter valid date format MM/dd/yy',
       name: 'Name Required',
       jobLink: 'job link required'
     }
 
-    const handleInputError = (event) => {
-      event.preventDefault()
+  const handleInputError = (event) => {
+    event.preventDefault()
 
-      if (editFormData.date == '') {
-        setErrorText(inputErrors.date)
-      } else {
-        setErrorText(null)
-      }
+    if (editFormData.date == '') {
+      setErrorText(inputErrors.date)
+    } else if (!result) {
+      setErrorText(inputErrors.dateTwo)
+    } else {
+      setErrorText(null)
     }
+  }
 
-    const handleCompanyInputError = (event) => {
-      event.preventDefault()
+  const handleCompanyInputError = (event) => {
+    event.preventDefault()
 
-      if (editFormData.company == '') {
-        setCompanyErrorText(inputErrors.name)
-      } else {
-        setCompanyErrorText(null)
-      }
+    if (editFormData.company == '') {
+      setCompanyErrorText(inputErrors.name)
+    } else {
+      setCompanyErrorText(null)
     }
+  }
 
-    const handlejobLinkInputError = (event) => {
-      event.preventDefault()
+  const handlejobLinkInputError = (event) => {
+    event.preventDefault()
 
-      if (editFormData.jobLink == '') {
-        setJobLinkErrorText(inputErrors.jobLink)
-      } else {
-        setJobLinkErrorText(null)
-      }
+    if (editFormData.jobLink == '') {
+      setJobLinkErrorText(inputErrors.jobLink)
+    } else {
+      setJobLinkErrorText(null)
     }
+  }
 
   return (
     <Container maxWidth='xxl'
@@ -256,34 +269,34 @@ function JobTable() {
                     </td>
                     <td>
                       <Button variant='contained' type='submit' onClick={(event) => {
-                          handleEditFormSubmit(event, job)
-                          handleInputError(event)
-                          handleCompanyInputError(event)
-                          handlejobLinkInputError(event)
+                        handleInputError(event)
+                        handleCompanyInputError(event)
+                        handlejobLinkInputError(event)
+                        handleEditFormSubmit(event, job)
                       }}            
                       type='submit'
-                        sx={{
-                          fontSize: { xs: '0.6rem', sm: '0.9rem' },
-                          fontWeight: '700',
-                          padding: '0.8rem',
-                          margin: 'auto',
-                          marginRight: '0.5rem',
-                          backgroundColor: '#023020',
-                          '&:hover': { backgroundColor: '#023020', opacity: 0.8 },
-                          width: { xs: '10%', sm: '10%' }}}>
+                      sx={{
+                        fontSize: { xs: '0.6rem', sm: '0.9rem' },
+                        fontWeight: '700',
+                        padding: '0.8rem',
+                        margin: 'auto',
+                        marginRight: '0.5rem',
+                        backgroundColor: '#023020',
+                        '&:hover': { backgroundColor: '#023020', opacity: 0.8 },
+                        width: { xs: '10%', sm: '10%' }}}>
                             Save
                       </Button>
                       <Button variant='contained' type='submit' onClick={handleCancelClick} 
                       type='submit'
                       sx={{
-                          fontSize: { xs: '0.6rem', sm: '0.9rem' },
-                          fontWeight: '700',
-                          padding: '0.8rem',
-                          margin: 'auto',
-                          backgroundColor: '#880808',
-                          '&:hover': { backgroundColor: '#880808', opacity: 0.8 },
-                          width: { xs: '10%', sm: '10%' }}}>
-                            Cancel
+                        fontSize: { xs: '0.6rem', sm: '0.9rem' },
+                        fontWeight: '700',
+                        padding: '0.8rem',
+                        margin: 'auto',
+                        backgroundColor: '#880808',
+                        '&:hover': { backgroundColor: '#880808', opacity: 0.8 },
+                        width: { xs: '10%', sm: '10%' }}}>
+                          Cancel
                       </Button>
                     </td>
                   </tr>
@@ -307,6 +320,7 @@ function JobTable() {
           handleAddFormChange={handleAddFormChange}
           handleAddFormSubmit={handleAddFormSubmit}
         />
+        <JobStats />
       </Box>
     </Container>
   )

@@ -96,7 +96,7 @@ function CalendarPage() {
               </Button>
             <Calendar onChange={setDate} value={date} className='react-calendar' />
           </CalendarContainer>
-            <JobTable />
+          <JobTable />
       </div>
   )
 }
