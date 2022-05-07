@@ -12,14 +12,13 @@ import Input from '@mui/material/Input'
 import { FormControl, Typography } from '@mui/material'
 import { width } from '@mui/system'
 import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
-import EditableRow from '../EditableRow/EditableRow'
 import AddTable from '../AddTable/AddTable'
 import EditableForm from '../EditableForm/EditableForm'
 import JobStats from '../JobStats/JobStats'
-import isMatch from 'date-fns/isMatch'
-import * as moment from 'moment';
-
-
+import { LocalizationProvider } from '@mui/lab'
+import { Stack } from '@mui/material'
+import { DatePicker } from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -54,7 +53,6 @@ function JobTable() {
     const [editJobId, setEditJobId] = useState(null)
 
     const [editFormData, setEditFormData] = useState({
-      date: '',
       company: '',
       jobLink: ''
     })
@@ -64,6 +62,9 @@ function JobTable() {
     const [companyErrorText, setCompanyErrorText] = useState()
     const [jobLinkErrorText, setJobLinkErrorText] = useState()
     const [dateError, setDateError] = useState()
+    const [selectedDate, setSelectedDate] = useState({
+      date: ''
+    })
 
   const handleAddFormChange = (event) => {
       event.preventDefault()
@@ -78,7 +79,6 @@ function JobTable() {
   }
 
   const handleEditFormChange = (event) => {
-    event.preventDefault()
 
     const fieldName = event.target.getAttribute('name')
     const fieldValue = event.target.value
@@ -110,7 +110,7 @@ function JobTable() {
 
     const editedJob = {
       id: editJobId,
-      date: editFormData.date,
+      date: selectedDate.date,
       company: editFormData.company,
       jobLink: editFormData.jobLink
     }
@@ -165,18 +165,17 @@ function JobTable() {
 
     const inputErrors = {
       date: 'Date Required',
-      dateTwo: 'Please enter valid date format MM/dd/yy',
       name: 'Name Required',
       jobLink: 'job link required'
     }
+
+  // Functions that trigger error messages when input field is blank
 
   const handleInputError = (event) => {
     event.preventDefault()
 
     if (editFormData.date == '') {
       setErrorText(inputErrors.date)
-    } else if (!result) {
-      setErrorText(inputErrors.dateTwo)
     } else {
       setErrorText(null)
     }
@@ -226,7 +225,7 @@ function JobTable() {
                 editJobId === job.id ? (
                   <tr>
                     <td>
-                      <CssTextField
+                      {/* <CssTextField
                       type='text'
                       name='date'
                       placeholder='Enter date applied'
@@ -237,7 +236,24 @@ function JobTable() {
                       sx={{
                         marginRight: '0.5rem',
                       }}
-                      />
+                      /> */}
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <Stack spacing={4} sx={{ width: '15vw' }}>
+                          <DatePicker 
+                              label='Date Picker' 
+                              name='date'
+                              renderInput={(params) => 
+                              <TextField 
+                                // Insert helpertext and error Boolean
+                              {...params} 
+                              />} 
+                              value={selectedDate}
+                              onChange={(newValue) => {
+                                setSelectedDate(newValue)
+                              }}
+                          />
+                      </Stack>
+                    </LocalizationProvider>
                     </td>
                     <td>
                       <CssTextField

@@ -3,9 +3,6 @@ import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-// Material UI date picker
-
-
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
       color: 'blue',
