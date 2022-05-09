@@ -1,17 +1,12 @@
-.react-icon-close {
-  cursor: pointer;
-  color: red;
-}
 
-.darkBackground {
-  opacity: 0.5;
-  transition: opacity 0.3s ease-out;
-}
-
-.calendar-container {
-  height: 100vh;
-  background-color: #d1dcebd9;
-}
-
-
+@media only screen and (max-width: 425px) {
+    .react-calendar__navigation {
+        display: flex;
+        flex-direction: column;
+    }
+    
+      .react-calendar__navigation__label {
+        font-weight: bold;
+    }
+  }
 

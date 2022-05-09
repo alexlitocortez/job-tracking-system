@@ -28,18 +28,29 @@ const CssTextField = styled(TextField)({
 const AddTable = ({ addFormData, handleAddFormChange, handleAddFormSubmit }) => {
   return (
     <div>
-        <Box>
         <FormControl
         sx={{
-          marginTop: '1rem',
-          padding: '1rem',
-          borderRadius: '4px'
+          borderRadius: '4px',
+          "@media only screen and (max-width: 340px)": { 
+            paddingBottom: '3rem'
+          }
         }}>
-          <Typography variant='h3' sx={{ fontFamily: 'Roboto', fontWeight: '500', marginBottom: '1rem' }}>
+          <Typography variant='h3' sx={{ 
+            fontFamily: 'Roboto', 
+            fontWeight: '500', 
+            marginBottom: '1rem', 
+            "@media only screen and (max-width: 768px)": { 
+              fontSize: '3rem',
+              marginTop: '1rem'
+            },
+            "@media only screen and (max-width: 425px)": { 
+              fontSize: '1.5rem',
+            },
+            }}>
             Add Job
           </Typography>
             <CssTextField
-              type='text'
+              type='date'
               name='date'
               placeholder='Enter date applied'
               value={addFormData.date}
@@ -48,7 +59,10 @@ const AddTable = ({ addFormData, handleAddFormChange, handleAddFormSubmit }) => 
                 marginRight: '0.5rem',
                 marginBottom: '1rem',
                 backgroundColor: '#fff',
-                width: '20rem'
+                width: '20rem',
+                "@media only screen and (max-width: 425px)": {
+                  width: '60vw'
+                }
               }}
             />
             <CssTextField
@@ -82,10 +96,9 @@ const AddTable = ({ addFormData, handleAddFormChange, handleAddFormSubmit }) => 
               margin: 'auto',
               marginTop: '1rem',
               width: { xs: '15%', sm: '15%' }}}>
-              Add
+              Submit
             </Button>
         </FormControl>
-        </Box>
     </div>
   )
 }

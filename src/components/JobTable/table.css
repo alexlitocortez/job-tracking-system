@@ -3,6 +3,7 @@
     border-collapse: collapse;
     width: 60vw;
     border-radius: 8px;
+    margin: auto;
     }
   
   table td, table th {
@@ -28,3 +29,28 @@
   thead {
     font-size: larger;
   }
+
+  @media only screen and (max-width: 425px) {
+    thead {
+      font-size: smaller;
+    }
+
+    td {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media only screen and (max-width: 340px) {
+
+    thead {
+      font-size: 0.7rem;
+      padding: '0rem';
+      width: 70vw;
+    }
+
+    th {
+      padding: '0rem';
+      width: 70vw;
+    }
+  }
+

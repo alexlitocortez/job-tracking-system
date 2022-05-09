@@ -15,10 +15,6 @@ import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
 import AddTable from '../AddTable/AddTable'
 import EditableForm from '../EditableForm/EditableForm'
 import JobStats from '../JobStats/JobStats'
-import { LocalizationProvider } from '@mui/lab'
-import { Stack } from '@mui/material'
-import { DatePicker } from '@mui/lab'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -45,14 +41,15 @@ function JobTable() {
     const [jobs, setJobs] = useState(data)
 
     const [addFormData, setAddFormData] = useState({
-      date: '',
       company: '',
       jobLink: ''
   })
 
     const [editJobId, setEditJobId] = useState(null)
 
+
     const [editFormData, setEditFormData] = useState({
+      job: '',
       company: '',
       jobLink: ''
     })
@@ -62,21 +59,32 @@ function JobTable() {
     const [companyErrorText, setCompanyErrorText] = useState()
     const [jobLinkErrorText, setJobLinkErrorText] = useState()
     const [dateError, setDateError] = useState()
-    const [selectedDate, setSelectedDate] = useState({
-      date: ''
-    })
 
   const handleAddFormChange = (event) => {
-      event.preventDefault()
+    event.preventDefault()
 
-      const fieldName = event.target.getAttribute('name')
-      const fieldValue = event.target.value 
+    const fieldName = event.target.getAttribute('name')
+    const fieldValue = event.target.value 
 
-      const newFormData = {...addFormData}
-      newFormData[fieldName] = fieldValue
+    const newFormData = {...addFormData}
 
-      setAddFormData(newFormData)
+    newFormData[fieldName] = fieldValue
+
+    setAddFormData(newFormData)
   }
+
+  const handleAddFormSubmit = (event) => {
+    event.preventDefault()
+
+    const newJob = {
+        date: addFormData.date,
+        company: addFormData.company,
+        jobLink: addFormData.jobLink
+    }
+
+    const newJobs = [...jobs, newJob]
+    setJobs(newJobs)
+}
 
   const handleEditFormChange = (event) => {
 
@@ -84,23 +92,12 @@ function JobTable() {
     const fieldValue = event.target.value
 
     const newFormData = { ...editFormData }
+
     newFormData[fieldName] = fieldValue
 
     setEditFormData(newFormData)
+
     console.log(newFormData)
-  }
-
-  const handleAddFormSubmit = (event) => {
-      event.preventDefault()
-
-      const newJob = {
-          date: addFormData.date,
-          company: addFormData.company,
-          jobLink: addFormData.jobLink
-      }
-
-      const newJobs = [...jobs, newJob]
-      setJobs(newJobs)
   }
 
   const handleEditFormSubmit = (event) => {
@@ -110,7 +107,7 @@ function JobTable() {
 
     const editedJob = {
       id: editJobId,
-      date: selectedDate.date,
+      date: editFormData.date,
       company: editFormData.company,
       jobLink: editFormData.jobLink
     }
@@ -135,7 +132,7 @@ function JobTable() {
       setEditJobId(null)
     }
   }
-  
+
   const handleEditClick = (event, job) => {
     event.preventDefault()
     setEditJobId(job.id)
@@ -169,8 +166,6 @@ function JobTable() {
       jobLink: 'job link required'
     }
 
-  // Functions that trigger error messages when input field is blank
-
   const handleInputError = (event) => {
     event.preventDefault()
 
@@ -203,12 +198,20 @@ function JobTable() {
 
   return (
     <Container maxWidth='xxl'
-      sx={{
-        backgroundColor: '#d1dcebd9'
-      }}
-      >
+    sx={{
+      backgroundColor: '#d1dcebd9',
+      display: 'flex',
+      justifyContent: 'center',
+      paddingBottom: '5rem',
+      "@media only screen and (max-width: 1024px)": { 
+        display: 'flex',
+        flexDirection: 'column'
+       },
+      "@media only screen and (max-width: 340px)": { 
+        padding: '0rem'
+       }
+    }}>
       <Box>
-      <FormControl>
       <table>
         <thead>
           <tr>
@@ -225,8 +228,8 @@ function JobTable() {
                 editJobId === job.id ? (
                   <tr>
                     <td>
-                      {/* <CssTextField
-                      type='text'
+                      <CssTextField
+                      type='date'
                       name='date'
                       placeholder='Enter date applied'
                       value={editFormData.date}
@@ -235,25 +238,9 @@ function JobTable() {
                       helperText={errorText}
                       sx={{
                         marginRight: '0.5rem',
+                        "@media only screen and (max-width: 1253px)": { width: '13vw' },
                       }}
-                      /> */}
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <Stack spacing={4} sx={{ width: '15vw' }}>
-                          <DatePicker 
-                              label='Date Picker' 
-                              name='date'
-                              renderInput={(params) => 
-                              <TextField 
-                                // Insert helpertext and error Boolean
-                              {...params} 
-                              />} 
-                              value={selectedDate}
-                              onChange={(newValue) => {
-                                setSelectedDate(newValue)
-                              }}
-                          />
-                      </Stack>
-                    </LocalizationProvider>
+                      />
                     </td>
                     <td>
                       <CssTextField
@@ -265,7 +252,9 @@ function JobTable() {
                       error={Boolean(companyErrorText)}
                       helperText={companyErrorText}
                       sx={{
-                        marginRight: '0.5rem'
+                        marginRight: '0.5rem',
+                        "@media only screen and (max-width: 1253px)": { width: '13vw' },
+                        "@media only screen and (max-width: 340px)": { marginRight: '0rem' },
                       }}
                       />
                     </td>
@@ -279,7 +268,8 @@ function JobTable() {
                       error={Boolean(jobLinkErrorText)}
                       helperText={jobLinkErrorText}
                       sx={{
-                        marginRight: '0.5rem'
+                        marginRight: '0.5rem',
+                        "@media only screen and (max-width: 1253px)": { width: '13vw' },
                       }}
                       />
                     </td>
@@ -296,9 +286,11 @@ function JobTable() {
                         fontWeight: '700',
                         padding: '0.8rem',
                         margin: 'auto',
-                        marginRight: '0.5rem',
                         backgroundColor: '#023020',
                         '&:hover': { backgroundColor: '#023020', opacity: 0.8 },
+                        "@media only screen and (max-width: 1253px)": { marginBottom: '0.5rem' },
+                        "@media only screen and (min-width: 1253px)": { marginBottom: '0rem' },
+                        "@media only screen and (min-width: 1253px)": { marginRight: '0.5rem' },
                         width: { xs: '10%', sm: '10%' }}}>
                             Save
                       </Button>
@@ -328,7 +320,6 @@ function JobTable() {
           ))}
         </tbody>
       </table>
-      </FormControl>
       </Box>
       <Box>
         <AddTable 
@@ -336,7 +327,6 @@ function JobTable() {
           handleAddFormChange={handleAddFormChange}
           handleAddFormSubmit={handleAddFormSubmit}
         />
-        <JobStats />
       </Box>
     </Container>
   )

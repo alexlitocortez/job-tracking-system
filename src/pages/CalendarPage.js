@@ -14,16 +14,21 @@ import JobTable from '../components/JobTable/JobTable'
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
   max-width: 100vw;
-  height: 90vh;
+  min-height: 60vh;
   margin: auto;
   background-color: #d1dcebd9;
   padding: 1rem;
   border-radius: 3px;
 
   .react-calendar {
-      margin: auto;
-      width: 90vw;
-      padding: 3rem;
+    border: none;
+    margin: auto;
+    width: 60vw;
+    padding: 1rem;
+    background-color: #d1dcebd9;
+    @media only screen and (max-width: 425px) {
+      width: 85vw;
+    }
   }
 
   .react-calendar__navigation {
@@ -33,24 +38,16 @@ const CalendarContainer = styled.div`
     font-weight: bold;
   }
 
-  .react-calendar__navigation__arrow {
-    flex-grow: 0.333;
-  }
-
   button {
     margin: 3px;
     background-color: #081354d9;
     border: 0;
     border-radius: 3px;
     color: white;
-    padding: 5px 0;
 
     &:hover {
-      background-color: #CBC3E3;
-    }
-
-    &:active {
-      background-color: #a5c1a5;
+      opacity: 0.8;
+      background-color: grey;
     }
   }
 
@@ -69,10 +66,6 @@ function CalendarPage() {
     const [hasOpacity, setHasOpacity] = useState(false);
 
     const formRef = useRef(null);
-
-    const showMoney = () => {
-      setShowForm(!showForm);
-    }
 
     const scrollToRef = (formRef) => window.scrollTo(0, formRef.current.offsetTop)
 

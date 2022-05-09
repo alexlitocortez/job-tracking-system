@@ -1,16 +1,19 @@
 [
     {
         "id": 1,
+        "date": "2022-05-16",
         "company": "Miles Partnership",
         "jobLink": ""
     },
     {
         "id": 2,
+        "date": "2022-05-16",
         "company": "Scottie Flights",
         "jobLink": ""
     },
     {
         "id": 3,
+        "date": "2022-05-16",
         "company": "Crossair",
         "jobLink": ""
     }
