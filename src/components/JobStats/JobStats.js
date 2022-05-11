@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-
+import Button from '@mui/material/Button'
 
 const JobStats = () => {
+
   return (
     <div>
         <Box 
@@ -19,27 +20,7 @@ const JobStats = () => {
           boxShadow: '1px 1px 0.5px black' }}>
               Job Stats
             <Grid>
-              <Grid item xs={6}>
-                Jobs Applied To Today:
-              </Grid>
-              <Grid item xs={6}>
-
-              </Grid>
-            </Grid>
-            <Grid>
-              <Grid item xs={6}>
-              
-              </Grid>
-              <Grid item xs={6}>
-
-              </Grid>
-            </Grid>
-            <Grid>
-              <Grid item xs={6}>
-
-              </Grid>
-              <Grid item xs={6}>
-
+              <Grid item xs={12}>
               </Grid>
             </Grid>
       </Box>

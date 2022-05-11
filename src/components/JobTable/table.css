@@ -32,7 +32,7 @@
 
   @media only screen and (max-width: 425px) {
     thead {
-      font-size: smaller;
+      font-size: 0.7rem;
     }
 
     td {
@@ -41,16 +41,12 @@
   }
 
   @media only screen and (max-width: 340px) {
-
-    thead {
-      font-size: 0.7rem;
-      padding: '0rem';
-      width: 70vw;
+    .data-cell {
+      padding: 0rem;
     }
 
-    th {
-      padding: '0rem';
-      width: 70vw;
+    td {
+      padding: 0rem;
     }
   }
 

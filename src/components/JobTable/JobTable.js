@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './table.css'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
@@ -38,27 +38,34 @@ const CssTextField = styled(TextField)({
 
 function JobTable() {
 
-    const [jobs, setJobs] = useState(data)
+  const [jobs, setJobs] = useState(data)
+  const [error, setError] = useState()  
+  const [errorText, setErrorText] = useState()
+  const [companyErrorText, setCompanyErrorText] = useState()
+  const [jobLinkErrorText, setJobLinkErrorText] = useState()
+  const [dateError, setDateError] = useState()
+  const [editJobId, setEditJobId] = useState(null)
+  const [jobsAppliedToday, setJobsAppliedToday] = useState(0)
 
-    const [addFormData, setAddFormData] = useState({
-      company: '',
-      jobLink: ''
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const yyyy = today.getFullYear();
+  const newToday = yyyy +'-'+ mm +'-'+ dd;
+
+  const [addFormData, setAddFormData] = useState({
+    date: '',
+    company: '',
+    jobLink: ''
+})
+
+  const [editFormData, setEditFormData] = useState({
+    date: '',
+    company: '',
+    jobLink: ''
   })
 
-    const [editJobId, setEditJobId] = useState(null)
-
-
-    const [editFormData, setEditFormData] = useState({
-      job: '',
-      company: '',
-      jobLink: ''
-    })
-
-    const [error, setError] = useState()  
-    const [errorText, setErrorText] = useState()
-    const [companyErrorText, setCompanyErrorText] = useState()
-    const [jobLinkErrorText, setJobLinkErrorText] = useState()
-    const [dateError, setDateError] = useState()
+  // Working functions
 
   const handleAddFormChange = (event) => {
     event.preventDefault()
@@ -84,6 +91,12 @@ function JobTable() {
 
     const newJobs = [...jobs, newJob]
     setJobs(newJobs)
+
+    if (addFormData.date == newToday) {
+      setJobsAppliedToday(jobsAppliedToday + 1)
+    } else {
+      return null
+    }
 }
 
   const handleEditFormChange = (event) => {
@@ -158,6 +171,12 @@ function JobTable() {
     newJobs.splice(index, 1)
 
     setJobs(newJobs)
+
+    if (editFormData.date !== newToday) {
+      setJobsAppliedToday(jobsAppliedToday - 1)
+    } else {
+      return null
+    }
   }
 
     const inputErrors = {
@@ -165,6 +184,8 @@ function JobTable() {
       name: 'Name Required',
       jobLink: 'job link required'
     }
+
+  // Input message errors
 
   const handleInputError = (event) => {
     event.preventDefault()
@@ -200,6 +221,13 @@ function JobTable() {
     <Container maxWidth='xxl'
     sx={{
       backgroundColor: '#d1dcebd9',
+      paddingBottom: '5rem',
+      "@media only screen and (max-width: 340px)": { 
+        padding: '0rem'
+        }
+    }}>
+    <Container maxWidth='xxl'
+    sx={{
       display: 'flex',
       justifyContent: 'center',
       paddingBottom: '5rem',
@@ -237,8 +265,7 @@ function JobTable() {
                       error={Boolean(errorText)}
                       helperText={errorText}
                       sx={{
-                        marginRight: '0.5rem',
-                        "@media only screen and (max-width: 1253px)": { width: '13vw' },
+                        "@media only screen and (max-width: 1253px)": { width: '10vw' },
                       }}
                       />
                     </td>
@@ -252,9 +279,7 @@ function JobTable() {
                       error={Boolean(companyErrorText)}
                       helperText={companyErrorText}
                       sx={{
-                        marginRight: '0.5rem',
-                        "@media only screen and (max-width: 1253px)": { width: '13vw' },
-                        "@media only screen and (max-width: 340px)": { marginRight: '0rem' },
+                        "@media only screen and (max-width: 1253px)": { width: '10vw' },
                       }}
                       />
                     </td>
@@ -268,8 +293,7 @@ function JobTable() {
                       error={Boolean(jobLinkErrorText)}
                       helperText={jobLinkErrorText}
                       sx={{
-                        marginRight: '0.5rem',
-                        "@media only screen and (max-width: 1253px)": { width: '13vw' },
+                        "@media only screen and (max-width: 1253px)": { width: '10vw' },
                       }}
                       />
                     </td>
@@ -288,9 +312,8 @@ function JobTable() {
                         margin: 'auto',
                         backgroundColor: '#023020',
                         '&:hover': { backgroundColor: '#023020', opacity: 0.8 },
-                        "@media only screen and (max-width: 1253px)": { marginBottom: '0.5rem' },
-                        "@media only screen and (min-width: 1253px)": { marginBottom: '0rem' },
-                        "@media only screen and (min-width: 1253px)": { marginRight: '0.5rem' },
+                        "@media only screen and (min-width: 1024px)": { marginRight: '0.5rem' },
+                        "@media only screen and (max-width: 1023px)": { marginBottom: '0.5rem' },
                         width: { xs: '10%', sm: '10%' }}}>
                             Save
                       </Button>
@@ -328,6 +351,13 @@ function JobTable() {
           handleAddFormSubmit={handleAddFormSubmit}
         />
       </Box>
+    </Container>
+    <Box>
+      <JobStats 
+      jobsAppliedToday={jobsAppliedToday}
+      />
+      {jobsAppliedToday}
+    </Box>
     </Container>
   )
 }

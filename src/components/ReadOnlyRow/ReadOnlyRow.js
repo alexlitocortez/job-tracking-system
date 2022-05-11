@@ -26,10 +26,11 @@ const ReadOnlyRow = ({ job, handleEditClick, handleDeleteClick }) => {
               margin: 'auto',
               backgroundColor: '#097969',
               '&:hover': { backgroundColor: '#097969', opacity: 0.7 },
-              "@media only screen and (max-width: 1253px)": { marginBottom: '0.5rem' },
               "@media only screen and (min-width: 1253px)": { marginBottom: '0rem' },
               "@media only screen and (min-width: 1254px)": { marginRight: '0.5rem' },
-              "@media only screen and (min-width: 932px) and (max-width: 1253px)": { marginBottom: '0.5rem' },
+              "@media only screen and (min-width: 932px) and (max-width: 1253px)": { marginRight: '0.5rem' },
+              "@media only screen and (max-width: 950px)": { marginRight: '0rem' },
+              "@media only screen and (max-width: 932px)": { marginBottom: '0.5rem' },
               width: { xs: '10%', sm: '10%' }}}>
                   Edit
             </Button>
