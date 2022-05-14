@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import JobTable from '../components/JobTable/JobTable'
+import LogoutButton from '../components/LogoutButton.js/LogoutButton'
 
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
@@ -54,7 +55,6 @@ const CalendarContainer = styled.div`
   react-calendar__month-view__days__day--weekend {
     color: #fff;
   }
-
 `;
 
 function CalendarPage() {
@@ -70,7 +70,10 @@ function CalendarPage() {
     const scrollToRef = (formRef) => window.scrollTo(0, formRef.current.offsetTop)
 
   return (
-      <div id='darkBackgroundTime' className='calendar-container'>                                                                                                     
+      <div id='darkBackgroundTime' className='calendar-container'> 
+        <Box component='span' sx={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: '#d1dcebd9', padding: '1rem' }}>
+        <LogoutButton /> 
+        </Box>                                                                                                   
           <CalendarContainer>
               <Button component={Link} to='/' style={{ backgroundColor: 'transparent' }}>
                 <Typography variant='h1'

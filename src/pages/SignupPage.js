@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import LogoutButton from '../components/LogoutButton.js/LogoutButton'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -83,7 +84,10 @@ function SignupPage() {
 
   return (
     <div>
-      <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '90vh', paddingBottom: '6rem' }}>
+      <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh', paddingBottom: '7rem' }}>
+        <Box component='span' sx={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+          <LogoutButton />
+        </Box>
         <Typography variant='h3'
         sx={{
         fontFamily: 'Oswald',

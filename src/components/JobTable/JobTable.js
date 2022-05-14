@@ -226,19 +226,19 @@ function JobTable() {
         padding: '0rem'
         }
     }}>
-    <Container maxWidth='xxl'
-    sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      paddingBottom: '5rem',
-      "@media only screen and (max-width: 1024px)": { 
+      <Container maxWidth='xxl'
+      sx={{
         display: 'flex',
-        flexDirection: 'column'
-       },
-      "@media only screen and (max-width: 340px)": { 
-        padding: '0rem'
-       }
-    }}>
+        justifyContent: 'center',
+        paddingBottom: '5rem',
+        "@media only screen and (max-width: 1024px)": { 
+          display: 'flex',
+          flexDirection: 'column'
+        },
+        "@media only screen and (max-width: 340px)": { 
+          padding: '0rem'
+        }
+      }}>
       <Box>
       <table>
         <thead>
@@ -351,13 +351,13 @@ function JobTable() {
           handleAddFormSubmit={handleAddFormSubmit}
         />
       </Box>
-    </Container>
-    <Box>
-      <JobStats 
-      jobsAppliedToday={jobsAppliedToday}
-      />
-      {jobsAppliedToday}
-    </Box>
+      </Container>
+      <Box>
+        <JobStats 
+        jobsAppliedToday={jobsAppliedToday}
+        />
+        {jobsAppliedToday}
+      </Box>
     </Container>
   )
 }

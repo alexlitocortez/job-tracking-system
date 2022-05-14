@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Footer from '../components/Footer/Footer'
 import InsertLinkIcon from '@mui/icons-material/InsertLink'
+import LogoutButton from '../components/LogoutButton.js/LogoutButton'
 
 
 const CssTextField = styled(TextField)({
@@ -39,24 +40,27 @@ const CssTextField = styled(TextField)({
 function CreateJob() {
   return (
     <div>
-        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '90vh', paddingBottom: '7rem' }}>
-              <Button 
-              component={Link}
-              to='/calendar'
-              style={{ 
-                backgroundColor: 'transparent',
-                }}>
-                <Typography variant='h3' 
-                sx={{ 
-                padding: '2rem',
-                textTransform: 'none',
-                color: 'white', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
-                fontFamily: 'Oswald', 
-                cursor: 'pointer', 
-                ":hover": { color: '#081354d9' } }}>
-                    View Calendar
-                </Typography>
-              </Button>
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#081354d9', minHeight: '93vh', paddingBottom: '7rem' }}>
+            <Box component='span' sx={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+              <LogoutButton />
+            </Box>
+            <Button 
+            component={Link}
+            to='/calendar'
+            style={{ 
+              backgroundColor: 'transparent',
+              }}>
+              <Typography variant='h3' 
+              sx={{ 
+              padding: '2rem',
+              textTransform: 'none',
+              color: 'white', "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
+              fontFamily: 'Oswald', 
+              cursor: 'pointer', 
+              ":hover": { color: '#081354d9' } }}>
+                  View Calendar
+              </Typography>
+            </Button>
             <Box 
             sx={{ 
             width: { xs: '80vw', sm: '40vw' }, 

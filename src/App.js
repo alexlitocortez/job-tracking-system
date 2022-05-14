@@ -8,6 +8,7 @@ import {
   Route,
 } from "react-router-dom"
 import CalendarPage from './pages/CalendarPage'
+import LogoutButton from './components/LogoutButton.js/LogoutButton'
 
 function App() {
 

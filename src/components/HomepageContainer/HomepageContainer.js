@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import './HomepageContainer.css'
+import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -14,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import LogoutButton from '../LogoutButton.js/LogoutButton'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -92,7 +94,18 @@ function HomepageContainer(history) {
   };
   
   return (
-    <div className='homepage-container'>
+    <div>
+      <Container maxWidth='xxl' 
+      sx={{ 
+        backgroundColor: '#081354d9', 
+        minHeight: '93vh', 
+        width: '100%',
+        minHeight: '100%',
+        overflow: 'auto'
+        }}>
+        <Box component='span' sx={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+          <LogoutButton className='react-icon-logout-button' />
+        </Box>
         <Box
           sx={{
             marginBottom: '2.5rem',
@@ -216,12 +229,13 @@ function HomepageContainer(history) {
                 </Grid>
               </Grid>
             </Box>
-            <Footer />
         <div className='blob-two'>
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="#ADD8E6" d="M54.1,6.1C54.1,29.8,27.1,59.6,3.1,59.6C-20.9,59.6,-41.8,29.8,-41.8,6.1C-41.8,-17.6,-20.9,-35.2,3.1,-35.2C27.1,-35.2,54.1,-17.6,54.1,6.1Z" transform="translate(100 100)" />
           </svg>
         </div>
+      </Container>
+      <Footer />
     </div>
   )
 }
