@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import JobTable from '../components/JobTable/JobTable'
 import LogoutButton from '../components/LogoutButton.js/LogoutButton'
+import ReactCalendar from '../components/ReactCalendar/ReactCalendar'
 
 const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
@@ -93,6 +94,7 @@ function CalendarPage() {
             <Calendar onChange={setDate} value={date} className='react-calendar' />
           </CalendarContainer>
           <JobTable />
+          <ReactCalendar />
       </div>
   )
 }
