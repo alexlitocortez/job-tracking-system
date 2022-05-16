@@ -72,7 +72,7 @@ function CreateJob() {
             backgroundColor: '#d1dcebd9', 
             marginTop: '1rem', 
             "@media only screen and (max-width: 425px)":
-              { width: '80vw'} 
+              { minHeight: '70vh' } 
             }}>
               <Box component='span' sx={{ display: 'flex' }}>
                 <Link to='/' style={{ textDecoration: 'none' }}>
@@ -99,11 +99,10 @@ function CreateJob() {
                     <Grid item xs={12}>
                         <CssTextField label="Date Applied" 
                         sx={{ 
-                          width: '30vw', 
+                          width: { xs: '60vw', sm: '60%' }, 
                           marginTop: '1rem',
-                          marginBottom: '1rem',
-                          "@media only screen and (max-width: 425px)":
-                          { width: '60vw'} }}
+                          marginBottom: '1rem'
+                        }}
                           InputProps={{
                             endAdornment: <BsFillCalendarDateFill />
                           }}
@@ -113,7 +112,7 @@ function CreateJob() {
                     <Grid item xs={12}>
                         <CssTextField label="Company" 
                         sx={{ 
-                          width: '30vw', 
+                          width: { xs: '60vw', sm: '60%' }, 
                           marginTop: '1rem',
                           marginBottom: '1rem',
                           "@media only screen and (max-width: 425px)":
@@ -127,7 +126,7 @@ function CreateJob() {
                     <Grid item xs={12}>
                         <CssTextField label="Job Link" 
                         sx={{ 
-                          width: '30vw',
+                          width: { xs: '60vw', sm: '60%' },
                           marginTop: '1rem',
                           marginBottom: '1rem',
                           "@media only screen and (max-width: 425px)":
