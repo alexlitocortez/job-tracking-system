@@ -71,30 +71,24 @@ function CalendarPage() {
     const scrollToRef = (formRef) => window.scrollTo(0, formRef.current.offsetTop)
 
   return (
-      <div id='darkBackgroundTime' className='calendar-container'> 
-        <Box component='span' sx={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: '#d1dcebd9', padding: '1rem' }}>
-        <LogoutButton /> 
-        </Box>                                                                                                   
-          <CalendarContainer>
-              <Button component={Link} to='/' style={{ backgroundColor: 'transparent' }}>
-                <Typography variant='h1'
-                sx={{ 
-                padding: '1rem',
-                color: '#081354d9',    
-                textTransform: 'none',
-                textAlign: 'center', 
-                fontFamily: 'Oswald',
-                fontSize: { xs: '2rem', sm: '4rem' },
-                "@media only screen and (max-width: 768px)": { textAlign: 'center' }, 
-                fontWeight: '200', 
-                ":hover": { opacity: 0.8 } }}>
-                  Joback
-                </Typography>
-              </Button>
-            <Calendar onChange={setDate} value={date} className='react-calendar' />
-          </CalendarContainer>
-          <JobTable />
-          <ReactCalendar />
+      <div> 
+        <Container maxWidth='xxl' sx={{ backgroundColor: '#d1dcebd9', minHeight: '100vh' }}>
+          <Box component='span' sx={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+            <LogoutButton /> 
+          </Box>
+          <Box
+          sx={{
+            width: { xs: '80vw', sm: '80vw' },
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            margin: 'auto',
+            "@media only screen and (max-width: 425px)": { height: '100%' }
+            }}>                                                                                                  
+            <ReactCalendar />
+          </Box> 
+        </Container>
       </div>
   )
 }

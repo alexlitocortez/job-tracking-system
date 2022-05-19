@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { FormControl, Typography } from '@mui/material'
 import Button from '@mui/material/Button'
+import InputFieldContext from '../ContextAPIs/InputFieldContext'
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -25,7 +26,10 @@ const CssTextField = styled(TextField)({
     },
   });
 
-const AddTable = ({ addFormData, handleAddFormChange, handleAddFormSubmit }) => {
+const AddTable = () => {
+
+  const { addFormData, setAddFormData, handleAddFormChange, handleAddFormSubmit } = useContext(InputFieldContext)
+
   return (
     <div>
         <FormControl

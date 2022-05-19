@@ -232,4 +232,14 @@ main {
 
 .react-icon-arrow {
     cursor: pointer;
+    font-size: 3rem;
+}
+
+.react-icon-arrow:hover {
+  transform: scale(1.5);
+  transition-duration: 2s;
+}
+
+.day-header {
+  color: #000;
 }

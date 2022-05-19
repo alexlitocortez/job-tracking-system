@@ -1,4 +1,8 @@
 
+.calendar-container {
+  background-color: #d1dcebd9;
+}
+
 @media only screen and (max-width: 425px) {
     .react-calendar__navigation {
         display: flex;

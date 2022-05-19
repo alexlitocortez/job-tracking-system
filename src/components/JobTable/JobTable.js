@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './table.css'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
@@ -15,6 +15,7 @@ import ReadOnlyRow from '../ReadOnlyRow/ReadOnlyRow'
 import AddTable from '../AddTable/AddTable'
 import EditableForm from '../EditableForm/EditableForm'
 import JobStats from '../JobStats/JobStats'
+import InputFieldContext from '../ContextAPIs/InputFieldContext'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -345,19 +346,9 @@ function JobTable() {
       </table>
       </Box>
       <Box>
-        <AddTable 
-          addFormData={addFormData}
-          handleAddFormChange={handleAddFormChange}
-          handleAddFormSubmit={handleAddFormSubmit}
-        />
+        <AddTable />
       </Box>
       </Container>
-      <Box>
-        <JobStats 
-        jobsAppliedToday={jobsAppliedToday}
-        />
-        {jobsAppliedToday}
-      </Box>
     </Container>
   )
 }

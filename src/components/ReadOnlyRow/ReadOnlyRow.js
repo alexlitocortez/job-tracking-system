@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from '@mui/material/Button'
 import { LocalizationProvider } from '@mui/lab'
 import { Stack } from '@mui/material'
 import { DatePicker } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import TextField from '@mui/material/TextField'
+import InputFieldContext from '../ContextAPIs/InputFieldContext'
 
-const ReadOnlyRow = ({ job, handleEditClick, handleDeleteClick }) => {
+const ReadOnlyRow = ({ job }) => {
 
-  const [selectedDate, setSelectedDate] = useState({
-    date: ''
-  })
+  const { handleEditClick, handleDeleteClick } = useContext(InputFieldContext)
 
   return (
     <tr>
