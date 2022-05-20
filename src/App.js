@@ -22,7 +22,7 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/signup' element={<SignupPage />} />
               <Route path='/freetrial' element={<FreeTrial />} />
-                <Route path='/calendar' element={<CalendarPage />} />
+              <Route path='/calendar' element={<CalendarPage />} />
             </Routes>
           </Router>
       </div>

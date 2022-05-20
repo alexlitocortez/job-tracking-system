@@ -92,7 +92,7 @@ const ReactCalendar = () => {
 
   return (
     <div>
-      <div style={{ width: '100%', backgroundColor: '#d1dcebd9' }}>
+      <div style={{ width: '100%' }}>
       <Typography variant='h1'
           sx={{ 
           padding: '1rem',

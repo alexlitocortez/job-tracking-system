@@ -47,9 +47,9 @@ export const InputFieldProvider = ({ children }) => {
     event.preventDefault()
 
     const newJob = {
-        date: addFormData.date,
-        company: addFormData.company,
-        jobLink: addFormData.jobLink
+      date: addFormData.date,
+      company: addFormData.company,
+      jobLink: addFormData.jobLink
     }
 
     const newJobs = [...jobs, newJob]
@@ -61,6 +61,20 @@ export const InputFieldProvider = ({ children }) => {
     //   return null
     // }
 }
+
+  const handleEditClick = (event, job) => {
+    event.preventDefault()
+    setEditJobId(job.id)
+
+    const formValues = {
+      date: job.date,
+      company: job.company,
+      jobLink: job.jobLink
+    }
+
+    setEditFormData(formValues)
+    console.log(jobs)
+  }
 
   const handleEditFormChange = (event) => {
 
@@ -94,8 +108,8 @@ export const InputFieldProvider = ({ children }) => {
 
     newJobs[index] = editedJob
 
-    // setJobs(newJobs)
-    // setEditJobId(null)
+    setJobs(newJobs)
+    setEditJobId(null)
 
     if (editFormData.date == '') {
       return null
@@ -107,19 +121,6 @@ export const InputFieldProvider = ({ children }) => {
       setJobs(newJobs)
       setEditJobId(null)
     }
-  }
-
-  const handleEditClick = (event, job) => {
-    event.preventDefault()
-    setEditJobId(job.id)
-
-    const formValues = {
-      date: job.date,
-      company: job.company,
-      jobLink: job.jobLink
-    }
-
-    setEditFormData(formValues)
   }
 
   const handleCancelClick = () => {
@@ -150,39 +151,72 @@ export const InputFieldProvider = ({ children }) => {
 
   // Input message errors
 
-  const handleInputError = (event) => {
+  const handleAllErrors = (event) => {
     event.preventDefault()
+
+    const fieldValue = event.target.value
+
+    const editedJob = {
+      id: editJobId,
+      date: editFormData.date,
+      company: editFormData.company,
+      jobLink: editFormData.jobLink
+    }
+
+    const newJobs = [...jobs]
+
+    const index = jobs.findIndex((job) => job.id === editJobId)
+
+    newJobs[index] = editedJob
 
     if (editFormData.date == '') {
       setErrorText(inputErrors.date)
-    } else {
-      setErrorText(null)
-    }
-  }
-
-  const handleCompanyInputError = (event) => {
-    event.preventDefault()
-
-    if (editFormData.company == '') {
+    } else if (editFormData.company == '') {
       setCompanyErrorText(inputErrors.name)
-    } else {
-      setCompanyErrorText(null)
-    }
-  }
-
-  const handlejobLinkInputError = (event) => {
-    event.preventDefault()
-
-    if (editFormData.jobLink == '') {
+    } else if (editFormData.jobLink == '') {
       setJobLinkErrorText(inputErrors.jobLink)
     } else {
-      setJobLinkErrorText(null)
+      setJobs(newJobs)
+      setEditJobId(null)
     }
   }
+
+  // const handleInputError = (event) => {
+  //   event.preventDefault()
+
+  //   if (editFormData.date == '') {
+  //     setErrorText(inputErrors.date)
+  //   } else {
+  //     setErrorText(null)
+  //   }
+  // }
+
+  // const handleCompanyInputError = (event) => {
+  //   event.preventDefault()
+
+  //   if (editFormData.company == '') {
+  //     setCompanyErrorText(inputErrors.name)
+  //   } else {
+  //     setCompanyErrorText(null)
+  //   }
+  // }
+
+  // const handlejobLinkInputError = (event) => {
+  //   event.preventDefault()
+
+  //   if (editFormData.jobLink == '') {
+  //     setJobLinkErrorText(inputErrors.jobLink)
+  //   } else {
+  //     setJobLinkErrorText(null)
+  //   }
+  // }
 
   const value = { 
     addFormData, setAddFormData, handleAddFormChange, handleAddFormSubmit, 
-    handleEditClick, handleDeleteClick
+    handleEditClick, handleDeleteClick, jobs, setJobs,
+    editJobId, setEditJobId, editFormData, setEditFormData,
+    errorText, setErrorText, companyErrorText, setCompanyErrorText,
+    jobLinkErrorText, setJobLinkErrorText, handleCancelClick, handleAllErrors
   }
 
   return (

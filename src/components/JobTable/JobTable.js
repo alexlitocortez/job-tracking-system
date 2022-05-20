@@ -39,184 +39,192 @@ const CssTextField = styled(TextField)({
 
 function JobTable() {
 
-  const [jobs, setJobs] = useState(data)
-  const [error, setError] = useState()  
-  const [errorText, setErrorText] = useState()
-  const [companyErrorText, setCompanyErrorText] = useState()
-  const [jobLinkErrorText, setJobLinkErrorText] = useState()
-  const [dateError, setDateError] = useState()
-  const [editJobId, setEditJobId] = useState(null)
-  const [jobsAppliedToday, setJobsAppliedToday] = useState(0)
+//   const [jobs, setJobs] = useState(data)
+//   const [error, setError] = useState()  
+//   const [errorText, setErrorText] = useState()
+//   const [companyErrorText, setCompanyErrorText] = useState()
+//   const [jobLinkErrorText, setJobLinkErrorText] = useState()
+//   const [dateError, setDateError] = useState()
+//   const [editJobId, setEditJobId] = useState(null)
+//   const [jobsAppliedToday, setJobsAppliedToday] = useState(0)
 
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const yyyy = today.getFullYear();
-  const newToday = yyyy +'-'+ mm +'-'+ dd;
+//   const today = new Date();
+//   const dd = String(today.getDate()).padStart(2, '0');
+//   const mm = String(today.getMonth() + 1).padStart(2, '0');
+//   const yyyy = today.getFullYear();
+//   const newToday = yyyy +'-'+ mm +'-'+ dd;
 
-  const [addFormData, setAddFormData] = useState({
-    date: '',
-    company: '',
-    jobLink: ''
-})
+//   const [addFormData, setAddFormData] = useState({
+//     date: '',
+//     company: '',
+//     jobLink: ''
+// })
 
-  const [editFormData, setEditFormData] = useState({
-    date: '',
-    company: '',
-    jobLink: ''
-  })
+//   const [editFormData, setEditFormData] = useState({
+//     date: '',
+//     company: '',
+//     jobLink: ''
+//   })
 
-  // Working functions
+//   // Working functions
 
-  const handleAddFormChange = (event) => {
-    event.preventDefault()
+//   const handleAddFormChange = (event) => {
+//     event.preventDefault()
 
-    const fieldName = event.target.getAttribute('name')
-    const fieldValue = event.target.value 
+//     const fieldName = event.target.getAttribute('name')
+//     const fieldValue = event.target.value 
 
-    const newFormData = {...addFormData}
+//     const newFormData = {...addFormData}
 
-    newFormData[fieldName] = fieldValue
+//     newFormData[fieldName] = fieldValue
 
-    setAddFormData(newFormData)
-  }
+//     setAddFormData(newFormData)
+//   }
 
-  const handleAddFormSubmit = (event) => {
-    event.preventDefault()
+//   const handleAddFormSubmit = (event) => {
+//     event.preventDefault()
 
-    const newJob = {
-        date: addFormData.date,
-        company: addFormData.company,
-        jobLink: addFormData.jobLink
-    }
+//     const newJob = {
+//         date: addFormData.date,
+//         company: addFormData.company,
+//         jobLink: addFormData.jobLink
+//     }
 
-    const newJobs = [...jobs, newJob]
-    setJobs(newJobs)
+//     const newJobs = [...jobs, newJob]
+//     setJobs(newJobs)
 
-    if (addFormData.date == newToday) {
-      setJobsAppliedToday(jobsAppliedToday + 1)
-    } else {
-      return null
-    }
-}
+//     // if (addFormData.date == newToday) {
+//     //   setJobsAppliedToday(jobsAppliedToday + 1)
+//     // } else {
+//     //   return null
+//     // }
+// }
 
-  const handleEditFormChange = (event) => {
+//   const handleEditFormChange = (event) => {
 
-    const fieldName = event.target.getAttribute('name')
-    const fieldValue = event.target.value
+//     const fieldName = event.target.getAttribute('name')
+//     const fieldValue = event.target.value
 
-    const newFormData = { ...editFormData }
+//     const newFormData = { ...editFormData }
 
-    newFormData[fieldName] = fieldValue
+//     newFormData[fieldName] = fieldValue
 
-    setEditFormData(newFormData)
+//     setEditFormData(newFormData)
 
-    console.log(newFormData)
-  }
+//     console.log(newFormData)
+//   }
 
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault()
+//   const handleEditFormSubmit = (event) => {
+//     event.preventDefault()
 
-    const fieldValue = event.target.value
+//     const fieldValue = event.target.value
 
-    const editedJob = {
-      id: editJobId,
-      date: editFormData.date,
-      company: editFormData.company,
-      jobLink: editFormData.jobLink
-    }
+//     const editedJob = {
+//       id: editJobId,
+//       date: editFormData.date,
+//       company: editFormData.company,
+//       jobLink: editFormData.jobLink
+//     }
 
-    const newJobs = [...jobs]
+//     const newJobs = [...jobs]
 
-    const index = jobs.findIndex((job) => job.id === editJobId)
+//     const index = jobs.findIndex((job) => job.id === editJobId)
 
-    newJobs[index] = editedJob
+//     newJobs[index] = editedJob
 
-    // setJobs(newJobs)
-    // setEditJobId(null)
+//     // setJobs(newJobs)
+//     // setEditJobId(null)
 
-    if (editFormData.date == '') {
-      return null
-    } else if (editFormData.company == '') {
-      return null
-    } else if (editFormData.jobLink == '') {
-      return null
-    } else {
-      setJobs(newJobs)
-      setEditJobId(null)
-    }
-  }
+//     if (editFormData.date == '') {
+//       return null
+//     } else if (editFormData.company == '') {
+//       return null
+//     } else if (editFormData.jobLink == '') {
+//       return null
+//     } else {
+//       setJobs(newJobs)
+//       setEditJobId(null)
+//     }
+//   }
 
-  const handleEditClick = (event, job) => {
-    event.preventDefault()
-    setEditJobId(job.id)
+//   const handleEditClick = (event, job) => {
+//     event.preventDefault()
+//     setEditJobId(job.id)
 
-    const formValues = {
-      date: job.date,
-      company: job.company,
-      jobLink: job.jobLink
-    }
+//     const formValues = {
+//       date: job.date,
+//       company: job.company,
+//       jobLink: job.jobLink
+//     }
 
-    setEditFormData(formValues)
-  }
+//     setEditFormData(formValues)
+//   }
 
-  const handleCancelClick = () => {
-    setEditJobId(null)
-  }
+//   const handleCancelClick = () => {
+//     setEditJobId(null)
+//   }
 
-  const handleDeleteClick = (jobId) => {
-    const newJobs = [...jobs]
+//   const handleDeleteClick = (jobId) => {
+//     const newJobs = [...jobs]
 
-    const index = jobs.findIndex((job) => job.id === jobId)
+//     const index = jobs.findIndex((job) => job.id === jobId)
 
-    newJobs.splice(index, 1)
+//     newJobs.splice(index, 1)
 
-    setJobs(newJobs)
+//     setJobs(newJobs)
 
-    if (editFormData.date !== newToday) {
-      setJobsAppliedToday(jobsAppliedToday - 1)
-    } else {
-      return null
-    }
-  }
+//     if (editFormData.date !== newToday) {
+//       setJobsAppliedToday(jobsAppliedToday - 1)
+//     } else {
+//       return null
+//     }
+//   }
 
-    const inputErrors = {
-      date: 'Date Required',
-      name: 'Name Required',
-      jobLink: 'job link required'
-    }
+//     const inputErrors = {
+//       date: 'Date Required',
+//       name: 'Name Required',
+//       jobLink: 'job link required'
+//     }
 
   // Input message errors
 
-  const handleInputError = (event) => {
-    event.preventDefault()
+  // const handleInputError = (event) => {
+  //   event.preventDefault()
 
-    if (editFormData.date == '') {
-      setErrorText(inputErrors.date)
-    } else {
-      setErrorText(null)
-    }
-  }
+  //   if (editFormData.date == '') {
+  //     setErrorText(inputErrors.date)
+  //   } else {
+  //     setErrorText(null)
+  //   }
+  // }
 
-  const handleCompanyInputError = (event) => {
-    event.preventDefault()
+  // const handleCompanyInputError = (event) => {
+  //   event.preventDefault()
 
-    if (editFormData.company == '') {
-      setCompanyErrorText(inputErrors.name)
-    } else {
-      setCompanyErrorText(null)
-    }
-  }
+  //   if (editFormData.company == '') {
+  //     setCompanyErrorText(inputErrors.name)
+  //   } else {
+  //     setCompanyErrorText(null)
+  //   }
+  // }
 
-  const handlejobLinkInputError = (event) => {
-    event.preventDefault()
+  // const handlejobLinkInputError = (event) => {
+  //   event.preventDefault()
 
-    if (editFormData.jobLink == '') {
-      setJobLinkErrorText(inputErrors.jobLink)
-    } else {
-      setJobLinkErrorText(null)
-    }
-  }
+  //   if (editFormData.jobLink == '') {
+  //     setJobLinkErrorText(inputErrors.jobLink)
+  //   } else {
+  //     setJobLinkErrorText(null)
+  //   }
+  // }
+
+  const { 
+    jobs, setJobs, editFormData, setEditFormData, handleEditClick, handleEditFormChange, 
+    handleEditFormSubmit, editJobId, setEditJobId, handleInputError,
+    handleCompanyInputError, handlejobLinkInputError, errorText, setErrorText,
+    companyErrorText, setCompanyErrorText, jobLinkErrorText, setJobLinkErrorText,
+    handleCancelClick, handleAllErrors
+  } = useContext(InputFieldContext)
 
   return (
     <Container maxWidth='xxl'
@@ -254,7 +262,7 @@ function JobTable() {
           {jobs.map((job) => (
             <>
               {
-                editJobId === job.id ? (
+                editJobId === jobs.id ? (
                   <tr>
                     <td>
                       <CssTextField
@@ -291,7 +299,7 @@ function JobTable() {
                       placeholder='Enter job link'
                       value={editFormData.jobLink}
                       onChange={handleEditFormChange}
-                      error={Boolean(jobLinkErrorText)}
+                      error={jobLinkErrorText}
                       helperText={jobLinkErrorText}
                       sx={{
                         "@media only screen and (max-width: 1253px)": { width: '10vw' },
@@ -299,12 +307,7 @@ function JobTable() {
                       />
                     </td>
                     <td>
-                      <Button variant='contained' type='submit' onClick={(event) => {
-                        handleInputError(event)
-                        handleCompanyInputError(event)
-                        handlejobLinkInputError(event)
-                        handleEditFormSubmit(event, job)
-                      }}            
+                      <Button variant='contained' onClick={(event) => handleAllErrors(event)}            
                       type='submit'
                       sx={{
                         fontSize: { xs: '0.6rem', sm: '0.9rem' },
@@ -333,11 +336,46 @@ function JobTable() {
                     </td>
                   </tr>
                 ) : (
-                  <ReadOnlyRow 
-                  job={job} 
-                  handleEditClick={handleEditClick}
-                  handleDeleteClick={handleDeleteClick}
-                  />
+                  <>
+                  {/* {jobs.map(job =>  */}
+                    <tr key={job.id}>
+                      <td>{job.date}</td>
+                      <td>{job.company}</td>
+                      <td>{job.jobLink}</td>
+                      <td className='read-only-row'>
+                        <Button variant='contained' onClick={(event) => handleEditClick(event, job)} type='button'
+                        sx={{
+                          fontSize: { xs: '0.6rem', sm: '0.9rem' },
+                          fontWeight: '700',
+                          padding: '0.8rem',
+                          margin: 'auto',
+                          backgroundColor: '#097969',
+                          '&:hover': { backgroundColor: '#097969', opacity: 0.7 },
+                          "@media only screen and (min-width: 1253px)": { marginBottom: '0rem' },
+                          "@media only screen and (min-width: 1254px)": { marginRight: '0.5rem' },
+                          "@media only screen and (min-width: 932px) and (max-width: 1253px)": { marginRight: '0.5rem' },
+                          "@media only screen and (max-width: 950px)": { marginRight: '0rem' },
+                          "@media only screen and (max-width: 932px)": { marginBottom: '0.5rem' },
+                          width: { xs: '10%', sm: '10%' }}}>
+                            Edit
+                        </Button>
+                        <Button variant='contained' onClick={() => handleDeleteClick(jobs.id)} 
+                        type='button'
+                        sx={{
+                          fontSize: { xs: '0.6rem', sm: '0.9rem' },
+                          fontWeight: '700',
+                          padding: '0.8rem',
+                          margin: 'auto',
+                          backgroundColor: '#A52A2A',
+                          '&:hover': { backgroundColor: '#A52A2A', opacity: 0.7 },
+                          width: { xs: '10%', sm: '10%' }}}>
+                            Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  {/* ) */}
+                  )}
+                  </>
                 )
               }
             </>
