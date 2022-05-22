@@ -9,17 +9,16 @@ import InputFieldContext from '../ContextAPIs/InputFieldContext'
 import data from '/Users/l/job-tracking-system/src/components/JobTable/jobData.json'
 
 
-const ReadOnlyRow = () => {
+const ReadOnlyRow = ({ job }) => {
 
   const { jobs, setJobs, handleEditClick, handleDeleteClick, editJobId, setEditJobId } = useContext(InputFieldContext)
 
   return (
     <>
-    {/* {jobs.map(job =>  */}
-      <tr key={moneyTime.id}>
-        <td>{moneyTime.date}</td>
-        <td>{moneyTime.company}</td>
-        <td>{moneyTime.jobLink}</td>
+      <tr key={job.id}>
+        <td>{job.date}</td>
+        <td>{job.company}</td>
+        <td>{job.jobLink}</td>
         <td className='read-only-row'>
           <Button variant='contained' onClick={(event) => handleEditClick(event, job)} type='button'
           sx={{
@@ -51,8 +50,6 @@ const ReadOnlyRow = () => {
           </Button>
         </td>
       </tr>
-    {/* ) */}
-    )}
     </>
   )
 }

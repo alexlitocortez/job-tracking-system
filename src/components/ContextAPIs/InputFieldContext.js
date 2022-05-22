@@ -11,7 +11,7 @@ export const InputFieldProvider = ({ children }) => {
   const [companyErrorText, setCompanyErrorText] = useState()
   const [jobLinkErrorText, setJobLinkErrorText] = useState()
   const [dateError, setDateError] = useState()
-  const [editJobId, setEditJobId] = useState(null)
+  const [editJobId, setEditJobId] = useState(1)
   const [addFormData, setAddFormData] = useState({
     date: '',
     company: '',
@@ -24,11 +24,17 @@ export const InputFieldProvider = ({ children }) => {
     jobLink: ''
   })
 
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const yyyy = today.getFullYear();
-  const newToday = yyyy +'-'+ mm +'-'+ dd;
+  const [searchString, setSearchString] = useState({
+    date: '',
+    company: '',
+    jobLink: ''
+  })
+
+  // const today = new Date();
+  // const dd = String(today.getDate()).padStart(2, '0');
+  // const mm = String(today.getMonth() + 1).padStart(2, '0');
+  // const yyyy = today.getFullYear();
+  // const newToday = yyyy +'-'+ mm +'-'+ dd;
 
   const handleAddFormChange = (event) => {
     event.preventDefault()
@@ -54,12 +60,6 @@ export const InputFieldProvider = ({ children }) => {
 
     const newJobs = [...jobs, newJob]
     setJobs(newJobs)
-
-    // if (addFormData.date == newToday) {
-    //   setJobsAppliedToday(jobsAppliedToday + 1)
-    // } else {
-    //   return null
-    // }
 }
 
   const handleEditClick = (event, job) => {
@@ -73,33 +73,29 @@ export const InputFieldProvider = ({ children }) => {
     }
 
     setEditFormData(formValues)
-    console.log(jobs)
   }
 
   const handleEditFormChange = (event) => {
+    event.preventDefault()
 
     const fieldName = event.target.getAttribute('name')
     const fieldValue = event.target.value
 
-    const newFormData = { ...editFormData }
-
+    const newFormData = {...searchString}
     newFormData[fieldName] = fieldValue
 
-    setEditFormData(newFormData)
-
-    console.log(newFormData)
+    setSearchString(newFormData)
+    console.log(searchString)
   }
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault()
 
-    const fieldValue = event.target.value
-
     const editedJob = {
       id: editJobId,
-      date: editFormData.date,
-      company: editFormData.company,
-      jobLink: editFormData.jobLink
+      date: searchString.date,
+      company: searchString.company,
+      jobLink: searchString.jobLink
     }
 
     const newJobs = [...jobs]
@@ -110,17 +106,6 @@ export const InputFieldProvider = ({ children }) => {
 
     setJobs(newJobs)
     setEditJobId(null)
-
-    if (editFormData.date == '') {
-      return null
-    } else if (editFormData.company == '') {
-      return null
-    } else if (editFormData.jobLink == '') {
-      return null
-    } else {
-      setJobs(newJobs)
-      setEditJobId(null)
-    }
   }
 
   const handleCancelClick = () => {
@@ -136,11 +121,11 @@ export const InputFieldProvider = ({ children }) => {
 
     setJobs(newJobs)
 
-    if (editFormData.date !== newToday) {
-      setJobsAppliedToday(jobsAppliedToday - 1)
-    } else {
-      return null
-    }
+    // if (editFormData.date !== newToday) {
+    //   setJobsAppliedToday(jobsAppliedToday - 1)
+    // } else {
+    //   return null
+    // }
   }
 
     const inputErrors = {
@@ -181,42 +166,43 @@ export const InputFieldProvider = ({ children }) => {
     }
   }
 
-  // const handleInputError = (event) => {
-  //   event.preventDefault()
+  const handleInputError = (event) => {
+    event.preventDefault()
 
-  //   if (editFormData.date == '') {
-  //     setErrorText(inputErrors.date)
-  //   } else {
-  //     setErrorText(null)
-  //   }
-  // }
+    if (editFormData.date == '') {
+      setErrorText(inputErrors.date)
+    } else {
+      setErrorText(null)
+    }
+  }
 
-  // const handleCompanyInputError = (event) => {
-  //   event.preventDefault()
+  const handleCompanyInputError = (event) => {
+    event.preventDefault()
 
-  //   if (editFormData.company == '') {
-  //     setCompanyErrorText(inputErrors.name)
-  //   } else {
-  //     setCompanyErrorText(null)
-  //   }
-  // }
+    if (editFormData.company == '') {
+      setCompanyErrorText(inputErrors.name)
+    } else {
+      setCompanyErrorText(null)
+    }
+  }
 
-  // const handlejobLinkInputError = (event) => {
-  //   event.preventDefault()
+  const handlejobLinkInputError = (event) => {
+    event.preventDefault()
 
-  //   if (editFormData.jobLink == '') {
-  //     setJobLinkErrorText(inputErrors.jobLink)
-  //   } else {
-  //     setJobLinkErrorText(null)
-  //   }
-  // }
+    if (editFormData.jobLink == '') {
+      setJobLinkErrorText(inputErrors.jobLink)
+    } else {
+      setJobLinkErrorText(null)
+    }
+  }
 
   const value = { 
     addFormData, setAddFormData, handleAddFormChange, handleAddFormSubmit, 
     handleEditClick, handleDeleteClick, jobs, setJobs,
     editJobId, setEditJobId, editFormData, setEditFormData,
     errorText, setErrorText, companyErrorText, setCompanyErrorText,
-    jobLinkErrorText, setJobLinkErrorText, handleCancelClick, handleAllErrors
+    jobLinkErrorText, setJobLinkErrorText, handleCancelClick, handleAllErrors,
+    searchString, setSearchString, handleEditFormChange
   }
 
   return (
