@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
-import data from '/Users/l/job-tracking-system/src/components/JobTable/jobData.json'
+import data from '../JobTable/jobData.json'
 import { nanoid } from "nanoid"
 
 const InputFieldContext = createContext()

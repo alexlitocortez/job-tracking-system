@@ -6,7 +6,7 @@ const { datesGenerator } = require('dates-generator')
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Typography from '@mui/material/Typography'
-import JobTable from '/Users/l/job-tracking-system/src/components/JobTable/JobTable.js'
+import JobTable from '../JobTable/JobTable.js'
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']

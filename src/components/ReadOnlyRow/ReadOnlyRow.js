@@ -6,7 +6,7 @@ import { DatePicker } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import TextField from '@mui/material/TextField'
 import InputFieldContext from '../ContextAPIs/InputFieldContext'
-import data from '/Users/l/job-tracking-system/src/components/JobTable/jobData.json'
+import data from '../JobTable/jobData.json'
 
 
 const ReadOnlyRow = ({ job }) => {

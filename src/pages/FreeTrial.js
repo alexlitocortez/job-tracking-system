@@ -16,7 +16,6 @@ import Footer from '../components/Footer/Footer'
 import InsertLinkIcon from '@mui/icons-material/InsertLink'
 import LogoutButton from '../components/LogoutButton.js/LogoutButton'
 
-
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
       color: 'blue',

@@ -198,7 +198,8 @@ function HomepageContainer(history) {
                       </Typography>
                     </Link>
                   </Box>
-                  <Button variant="contained" 
+                  <Button variant="contained" to='/calendar'
+                  component={Link}
                   onClick={login}
                     sx={{
                     fontWeight: '700',
