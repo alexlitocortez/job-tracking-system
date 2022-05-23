@@ -1,17 +1,20 @@
 import React, { createContext, useState, useEffect } from 'react'
 import data from '/Users/l/job-tracking-system/src/components/JobTable/jobData.json'
+import { nanoid } from "nanoid"
 
 const InputFieldContext = createContext()
 
 export const InputFieldProvider = ({ children }) => {
-
   const [jobs, setJobs] = useState(data)
   const [error, setError] = useState()  
   const [errorText, setErrorText] = useState()
   const [companyErrorText, setCompanyErrorText] = useState()
   const [jobLinkErrorText, setJobLinkErrorText] = useState()
+  const [errorTextAdd, setErrorTextAdd] = useState()
+  const [companyErrorTextAdd, setCompanyErrorTextAdd] = useState()
+  const [jobLinkErrorTextAdd, setJobLinkErrorTextAdd] = useState()
   const [dateError, setDateError] = useState()
-  const [editJobId, setEditJobId] = useState(1)
+  const [editJobId, setEditJobId] = useState()
   const [addFormData, setAddFormData] = useState({
     date: '',
     company: '',
@@ -29,6 +32,12 @@ export const InputFieldProvider = ({ children }) => {
     company: '',
     jobLink: ''
   })
+
+  const inputErrors = {
+    date: 'Date Required',
+    name: 'Name Required',
+    jobLink: 'job link required'
+  }
 
   // const today = new Date();
   // const dd = String(today.getDate()).padStart(2, '0');
@@ -53,13 +62,15 @@ export const InputFieldProvider = ({ children }) => {
     event.preventDefault()
 
     const newJob = {
+      id: nanoid(),
       date: addFormData.date,
       company: addFormData.company,
       jobLink: addFormData.jobLink
     }
-
-    const newJobs = [...jobs, newJob]
-    setJobs(newJobs)
+    
+      const newJobs = [...jobs, newJob]
+      setJobs(newJobs)
+    
 }
 
   const handleEditClick = (event, job) => {
@@ -72,7 +83,7 @@ export const InputFieldProvider = ({ children }) => {
       jobLink: job.jobLink
     }
 
-    setEditFormData(formValues)
+    setSearchString(formValues)
   }
 
   const handleEditFormChange = (event) => {
@@ -85,7 +96,36 @@ export const InputFieldProvider = ({ children }) => {
     newFormData[fieldName] = fieldValue
 
     setSearchString(newFormData)
-    console.log(searchString)
+  }
+
+  const handleInputError = (event) => {
+    event.preventDefault()
+
+    if (searchString.date == '') {
+      setErrorText(inputErrors.date)
+    } else {
+      setErrorText(null)
+    }
+  }
+
+  const handleCompanyInputError = (event) => {
+    event.preventDefault()
+
+    if (searchString.company == '') {
+      setCompanyErrorText(inputErrors.name)
+    } else {
+      setCompanyErrorText(null)
+    }
+  }
+
+  const handlejobLinkInputError = (event) => {
+    event.preventDefault()
+
+    if (searchString.jobLink == '') {
+      setJobLinkErrorText(inputErrors.jobLink)
+    } else {
+      setJobLinkErrorText(null)
+    }
   }
 
   const handleEditFormSubmit = (event) => {
@@ -99,13 +139,21 @@ export const InputFieldProvider = ({ children }) => {
     }
 
     const newJobs = [...jobs]
-
+  
     const index = jobs.findIndex((job) => job.id === editJobId)
 
-    newJobs[index] = editedJob
-
-    setJobs(newJobs)
-    setEditJobId(null)
+    if (searchString.date == '') {
+      handleInputError(event)
+    } else if (searchString.company == '') {
+      handleCompanyInputError(event)
+    } else if (searchString.jobLink == '') {
+      handlejobLinkInputError(event)
+    } else {
+      newJobs[index] = editedJob
+  
+      setJobs(newJobs)
+      setEditJobId(null)
+    }
   }
 
   const handleCancelClick = () => {
@@ -120,80 +168,6 @@ export const InputFieldProvider = ({ children }) => {
     newJobs.splice(index, 1)
 
     setJobs(newJobs)
-
-    // if (editFormData.date !== newToday) {
-    //   setJobsAppliedToday(jobsAppliedToday - 1)
-    // } else {
-    //   return null
-    // }
-  }
-
-    const inputErrors = {
-      date: 'Date Required',
-      name: 'Name Required',
-      jobLink: 'job link required'
-    }
-
-  // Input message errors
-
-  const handleAllErrors = (event) => {
-    event.preventDefault()
-
-    const fieldValue = event.target.value
-
-    const editedJob = {
-      id: editJobId,
-      date: editFormData.date,
-      company: editFormData.company,
-      jobLink: editFormData.jobLink
-    }
-
-    const newJobs = [...jobs]
-
-    const index = jobs.findIndex((job) => job.id === editJobId)
-
-    newJobs[index] = editedJob
-
-    if (editFormData.date == '') {
-      setErrorText(inputErrors.date)
-    } else if (editFormData.company == '') {
-      setCompanyErrorText(inputErrors.name)
-    } else if (editFormData.jobLink == '') {
-      setJobLinkErrorText(inputErrors.jobLink)
-    } else {
-      setJobs(newJobs)
-      setEditJobId(null)
-    }
-  }
-
-  const handleInputError = (event) => {
-    event.preventDefault()
-
-    if (editFormData.date == '') {
-      setErrorText(inputErrors.date)
-    } else {
-      setErrorText(null)
-    }
-  }
-
-  const handleCompanyInputError = (event) => {
-    event.preventDefault()
-
-    if (editFormData.company == '') {
-      setCompanyErrorText(inputErrors.name)
-    } else {
-      setCompanyErrorText(null)
-    }
-  }
-
-  const handlejobLinkInputError = (event) => {
-    event.preventDefault()
-
-    if (editFormData.jobLink == '') {
-      setJobLinkErrorText(inputErrors.jobLink)
-    } else {
-      setJobLinkErrorText(null)
-    }
   }
 
   const value = { 
@@ -201,8 +175,9 @@ export const InputFieldProvider = ({ children }) => {
     handleEditClick, handleDeleteClick, jobs, setJobs,
     editJobId, setEditJobId, editFormData, setEditFormData,
     errorText, setErrorText, companyErrorText, setCompanyErrorText,
-    jobLinkErrorText, setJobLinkErrorText, handleCancelClick, handleAllErrors,
-    searchString, setSearchString, handleEditFormChange
+    jobLinkErrorText, setJobLinkErrorText, handleCancelClick,
+    searchString, setSearchString, handleEditFormChange, handleInputError,
+    handleCompanyInputError, handlejobLinkInputError, handleEditFormSubmit
   }
 
   return (

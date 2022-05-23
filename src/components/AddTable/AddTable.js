@@ -28,7 +28,12 @@ const CssTextField = styled(TextField)({
 
 const AddTable = () => {
 
-  const { addFormData, setAddFormData, handleAddFormChange, handleAddFormSubmit } = useContext(InputFieldContext)
+  const { 
+    addFormData, setAddFormData, handleAddFormChange, handleAddFormSubmit,
+    handleInputError, handleCompanyInputError, handlejobLinkInputError, errorText, 
+    setErrorText, companyErrorText, setCompanyErrorText, jobLinkErrorText, 
+    setJobLinkErrorText
+  } = useContext(InputFieldContext)
 
   return (
     <div>

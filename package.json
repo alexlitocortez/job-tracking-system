@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
     "dates-generator": "^1.0.4",
+    "express": "^4.18.1",
     "react": "^17.0.2",
     "react-calendar": "^3.7.0",
     "react-datepicker": "^4.7.0",

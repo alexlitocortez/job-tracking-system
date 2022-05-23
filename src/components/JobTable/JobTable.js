@@ -78,7 +78,6 @@ function JobTable() {
             <>
               { editJobId === job.id ? ( 
               <EditableForm 
-                editFormData={editFormData}
               /> 
               ) : ( 
               <ReadOnlyRow 

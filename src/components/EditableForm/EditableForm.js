@@ -44,7 +44,7 @@ const EditableForm = () => {
         placeholder='Enter date applied'
         value={searchString.date}
         onChange={handleEditFormChange}
-        error={errorText}
+        error={Boolean(errorText)}
         helperText={errorText}
         sx={{
           "@media only screen and (max-width: 1253px)": { width: '10vw' },
@@ -58,7 +58,7 @@ const EditableForm = () => {
         placeholder='Enter company'
         value={searchString.company}
         onChange={handleEditFormChange}
-        error={companyErrorText}
+        error={Boolean(companyErrorText)}
         helperText={companyErrorText}
         sx={{
           "@media only screen and (max-width: 1253px)": { width: '10vw' },
@@ -72,7 +72,7 @@ const EditableForm = () => {
         placeholder='Enter job link'
         value={searchString.jobLink}
         onChange={handleEditFormChange}
-        error={jobLinkErrorText}
+        error={Boolean(jobLinkErrorText)}
         helperText={jobLinkErrorText}
         sx={{
           "@media only screen and (max-width: 1253px)": { width: '10vw' },
@@ -80,7 +80,9 @@ const EditableForm = () => {
         />
       </td>
       <td>
-      <Button variant='contained' onClick={handleEditFormSubmit}            
+      <Button variant='contained' type='submit' onClick={(event) => (
+        handleEditFormSubmit(event)
+      )}            
       sx={{
         fontSize: { xs: '0.6rem', sm: '0.9rem' },
         fontWeight: '700',
